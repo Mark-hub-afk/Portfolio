@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mark Johnson Gerardo | Cute Portfolio</title>
+    <title>Mark Johnson Gerardo | Portfolio</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Vue 3 CDN -->
@@ -97,11 +97,11 @@
 
         /* Vue Transition Animations */
         .fade-enter-active, .fade-leave-active {
-            transition: opacity 0.25s ease, transform 0.25s ease;
+            transition: opacity 0.3s ease, transform 0.3s ease;
         }
         .fade-enter-from, .fade-leave-to {
             opacity: 0;
-            transform: scale(0.95);
+            transform: translateY(-8px);
         }
     </style>
 </head>
@@ -134,16 +134,8 @@
             </div>
         </div>
 
-        <!-- Floating Background Glows -->
-        <div class="absolute top-12 left-5 md:left-20 w-12 h-16 bg-purple-900/40 border-2 border-purple-400/40 rounded-xl animate-float pointer-events-none hidden sm:flex items-center justify-center text-purple-300 opacity-60 backdrop-blur-sm">
-            <i class="fa-solid fa-diamond text-xs"></i>
-        </div>
-        <div class="absolute top-96 right-6 md:right-16 w-14 h-20 bg-indigo-900/40 border-2 border-phantom-lavender/40 rounded-xl animate-float-rev pointer-events-none hidden sm:flex items-center justify-center text-phantom-lavender opacity-60 backdrop-blur-sm">
-            <i class="fa-solid fa-skull text-xs"></i>
-        </div>
-
         <!-- Main Container -->
-        <main class="max-w-4xl mx-auto px-3 sm:px-6 py-4 sm:py-10 w-full flex flex-col gap-5 sm:gap-8 relative z-10">
+        <main class="max-w-4xl mx-auto px-3 sm:px-6 py-4 sm:py-10 w-full flex flex-col gap-6 relative z-10">
 
             <!-- Navigation Bar -->
             <nav class="bg-phantom-card/80 backdrop-blur-md border-2 border-phantom-border rounded-2xl sm:rounded-full px-4 sm:px-6 py-3 flex items-center justify-between shadow-phantom-card">
@@ -152,6 +144,16 @@
                         <i class="fa-solid fa-wand-magic-sparkles"></i>
                     </div>
                     <span class="font-bold text-base sm:text-lg tracking-wide text-phantom-lavender truncate">{{ profile.name }}</span>
+                </div>
+
+                <!-- Avatar Profile Quick Pill -->
+                <div @click="toggleAvatarFace" class="flex items-center gap-2 bg-phantom-dark/80 hover:bg-purple-950 border border-purple-500/40 rounded-full py-1 px-3 cursor-pointer transition active:scale-95">
+                    <div class="w-6 h-6 rounded-full overflow-hidden border border-purple-400">
+                        <img :src="isFaceRevealed ? 'mark_face.jpg' : profile.avatar" alt="Mark Avatar" class="w-full h-full object-cover">
+                    </div>
+                    <span class="text-xs text-purple-200 font-bold hidden sm:inline">
+                        {{ isFaceRevealed ? 'Real Face' : 'Chibi Avatar' }}
+                    </span>
                 </div>
             </nav>
 
@@ -183,7 +185,7 @@
                              class="w-32 h-32 sm:w-40 sm:h-40 md:w-44 md:h-44 rounded-2xl sm:rounded-3xl bg-gradient-to-tr from-purple-600 via-pink-400 to-purple-400 p-1.5 phantom-ring transform transition hover:scale-105 duration-300 cursor-pointer group"
                              title="Click to peel/reveal Mark's real face!">
                             <div class="w-full h-full bg-phantom-dark rounded-[18px] sm:rounded-[22px] overflow-hidden relative avatar-peel" :class="{ 'peeled': isFaceRevealed }">
-                                <img :src="isFaceRevealed ? 'mark_face.jpg' : profile.avatar" 
+                                <img :src="isFaceRevealed ? 'mark_face.webp' : profile.avatar" 
                                      @error="handleImageError($event, 'https://placehold.co/400x400/251D3A/D8B4FE?text=Mark+Gerardo')" 
                                      alt="Mark Johnson Gerardo Avatar" 
                                      class="w-full h-full object-cover object-top transition duration-300 group-hover:scale-110">
@@ -240,88 +242,168 @@
                 </div>
             </header>
 
-            <!-- Interactive Alice Companion Section -->
-            <section class="bg-gradient-to-r from-purple-900/40 via-phantom-card to-indigo-900/40 rounded-2xl sm:rounded-3xl p-4 sm:p-6 border-2 sm:border-3 border-phantom-border shadow-phantom-card relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-6">
-                
-                <div class="relative shrink-0 flex items-center justify-center">
-                    <div class="absolute w-28 h-28 sm:w-36 sm:h-36 bg-purple-600/30 rounded-full blur-2xl"></div>
-                    
-                    <div class="w-28 h-32 sm:w-36 sm:h-40 relative alice-companion cursor-pointer" @click="triggerAliceQuote">
-                        <img src="Alice_animation.gif" 
-                             @error="handleImageError($event, 'Alice_animation.webp')" 
-                             alt="Alice Phantom Chibi" 
-                             class="w-full h-full object-contain filter drop-shadow-[0_0_12px_rgba(168,85,247,0.8)]">
+            <!-- FEATURED PROJECTS SECTION -->
+            <section class="bg-phantom-card/90 backdrop-blur-md rounded-2xl sm:rounded-3xl p-5 sm:p-8 border-2 sm:border-3 border-phantom-border shadow-phantom-card relative overflow-hidden">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 rounded-2xl bg-purple-900/80 border-2 border-purple-500 flex items-center justify-center text-pink-400 text-xl shadow-md">
+                        <i class="fa-solid fa-laptop-code"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-bold text-white">Featured Projects</h2>
+                        <p class="text-xs text-purple-300/80 font-quicksand">Academic & group development projects</p>
                     </div>
                 </div>
 
-                <div class="flex-1 w-full bg-phantom-dark/80 rounded-xl sm:rounded-2xl p-4 sm:p-5 border-2 border-purple-500/30 relative text-center md:text-left shadow-inner">
-                    <div class="flex items-center justify-between mb-2">
-                        <span class="text-[11px] sm:text-xs uppercase tracking-widest text-phantom-lavender font-bold flex items-center gap-1.5">
-                            <i class="fa-solid fa-cat text-pink-400"></i> Companion: Alice 
-                        </span>
-                        <span class="text-[10px] bg-purple-900/80 text-purple-300 px-2 py-0.5 rounded-full border border-purple-700">
-                            Tap Alice!
-                        </span>
+                <div class="grid grid-cols-1 gap-6">
+                    <!-- Project 1: KyuTea Cafe -->
+                    <div class="bg-phantom-dark/80 border-2 border-purple-500/40 rounded-2xl p-5 shadow-md flex flex-col justify-between">
+                        <div>
+                            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                                <span class="bg-purple-950 text-pink-300 border border-purple-500/40 px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1.5">
+                                    <i class="fa-solid fa-mug-hot text-amber-400"></i> Full-Stack Web Application
+                                </span>
+                                <span class="text-xs text-purple-300/70 font-quicksand font-semibold">School Group Project</span>
+                            </div>
+
+                            <h3 class="text-xl font-bold text-white mb-2">KyuTea Cafe</h3>
+                            <p class="text-xs sm:text-sm text-purple-200/80 font-quicksand leading-relaxed mb-4">
+                                A full-stack coffee shop dashboard and menu management system built with Django REST Framework backend and Vue 3 frontend with Tailwind CSS styling.
+                            </p>
+
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-purple-900/60 text-purple-300 px-2.5 py-1 rounded-lg text-xs font-semibold border border-purple-700/50">Django REST</span>
+                                <span class="bg-purple-900/60 text-emerald-300 px-2.5 py-1 rounded-lg text-xs font-semibold border border-purple-700/50">Vue 3</span>
+                                <span class="bg-purple-900/60 text-cyan-300 px-2.5 py-1 rounded-lg text-xs font-semibold border border-purple-700/50">Tailwind CSS</span>
+                                <span class="bg-purple-900/60 text-sky-300 px-2.5 py-1 rounded-lg text-xs font-semibold border border-purple-700/50">PostgreSQL</span>
+                            </div>
+                        </div>
+
+                        <!-- Interactive Repo Invoker Card -->
+                        <div class="border-t border-purple-900/80 pt-4">
+                            <button @click="toggleKyuteaRepo" class="bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-500 hover:to-pink-600 text-white px-4 py-2.5 rounded-xl font-bold text-xs shadow flex items-center gap-2 transition active:scale-95">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i> 
+                                {{ showKyuteaRepo ? 'Hide Repository Card' : 'Invoke Repository Card' }}
+                            </button>
+
+                            <Transition name="fade">
+                                <div v-if="showKyuteaRepo" class="mt-4 bg-phantom-card/90 border-2 border-phantom-glow rounded-2xl p-4 flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left shadow-phantom-glow">
+                                    <div class="w-20 h-20 shrink-0 rounded-xl overflow-hidden border border-purple-400 bg-black/40">
+                                        <img src="alice_sulk.gif" @error="handleImageError($event, 'Alice_animation.gif')" alt="Alice Sulk Animation" class="w-full h-full object-contain">
+                                    </div>
+                                    <div class="flex-1">
+                                        <h4 class="text-sm font-bold text-phantom-lavender mb-1">KyuTea Cafe GitHub Repository</h4>
+                                        <p class="text-xs text-purple-300/80 font-quicksand mb-2">Access the source code, backend API endpoints, and setup guide.</p>
+                                        <a href="https://github.com/Mark-hub-afk/kyutea-cafe.git" target="_blank" rel="noopener noreferrer" 
+                                           class="inline-flex items-center gap-2 bg-purple-950 hover:bg-purple-900 text-pink-300 border border-pink-500/40 px-3.5 py-1.5 rounded-lg text-xs font-bold transition">
+                                            <i class="fa-brands fa-github"></i> https://github.com/Mark-hub-afk/kyutea-cafe.git
+                                        </a>
+                                    </div>
+                                </div>
+                            </Transition>
+                        </div>
                     </div>
 
-                    <p class="text-sm sm:text-base text-purple-100 font-quicksand font-bold italic transition-all duration-300 leading-snug">
-                        "{{ currentAliceDialogue }}"
-                    </p>
+                    <!-- Project 2: Boarding House Finder -->
+                    <div class="bg-phantom-dark/80 border-2 border-purple-500/40 rounded-2xl p-5 shadow-md flex flex-col justify-between">
+                        <div>
+                            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                                <span class="bg-indigo-950 text-sky-300 border border-indigo-500/40 px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1.5">
+                                    <i class="fa-solid fa-bug text-emerald-400"></i> Quality Assurance & Web Testing
+                                </span>
+                                <span class="text-xs text-purple-300/70 font-quicksand font-semibold">School Group Project</span>
+                            </div>
 
-                    <div class="mt-3 flex flex-wrap gap-2 justify-center md:justify-start">
-                        <button @click="triggerAliceQuote" class="bg-purple-800/60 hover:bg-purple-700 text-purple-200 text-xs px-3 py-1.5 rounded-lg border border-purple-500/40 transition active:scale-95">
-                            🔮 Cast Spell
-                        </button>
-                        <button @click="openGithubModal" class="bg-pink-900/40 hover:bg-pink-800/60 text-pink-200 text-xs px-3 py-1.5 rounded-lg border border-pink-500/40 transition flex items-center gap-1.5 active:scale-95">
-                            <i class="fa-brands fa-github"></i> Summon GitHub
-                        </button>
+                            <h3 class="text-xl font-bold text-white mb-2">Boarding House Finder</h3>
+                            <p class="text-xs sm:text-sm text-purple-200/80 font-quicksand leading-relaxed mb-4">
+                                Served as the primary Web Tester for a web application designed to help students discover and evaluate nearby boarding houses. Responsible for functionality testing, UI/UX evaluation, and identifying operational bugs.
+                            </p>
+
+                            <div class="flex flex-wrap gap-2 mb-2">
+                                <span class="bg-indigo-900/60 text-sky-300 px-2.5 py-1 rounded-lg text-xs font-semibold border border-indigo-700/50">QA Web Testing</span>
+                                <span class="bg-indigo-900/60 text-emerald-300 px-2.5 py-1 rounded-lg text-xs font-semibold border border-indigo-700/50">UI/UX Inspection</span>
+                                <span class="bg-indigo-900/60 text-purple-300 px-2.5 py-1 rounded-lg text-xs font-semibold border border-indigo-700/50">Bug Reporting</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Streamlined Skills Section -->
-            <section class="bg-phantom-card/90 backdrop-blur-md rounded-2xl sm:rounded-3xl p-4 sm:p-8 border-2 sm:border-3 border-phantom-border shadow-phantom-card relative overflow-hidden">
-                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 mb-5">
-                    <div class="flex items-center gap-3">
-                        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-purple-900/80 border-2 border-purple-500 flex items-center justify-center text-phantom-lavender text-lg sm:text-xl">
-                            <i class="fa-solid fa-gem"></i>
-                        </div>
-                        <div>
-                            <h2 class="text-xl sm:text-2xl font-bold text-white">Skill Abilities</h2>
-                            <p class="text-[11px] sm:text-xs text-purple-300/80 font-quicksand">Essential powers equipped for web development</p>
-                        </div>
+            <!-- EDUCATION & ACADEMIC BACKGROUND SECTION -->
+            <section class="bg-phantom-card/90 backdrop-blur-md rounded-2xl sm:rounded-3xl p-5 sm:p-8 border-2 sm:border-3 border-phantom-border shadow-phantom-card relative overflow-hidden">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-purple-600 to-pink-500 flex items-center justify-center text-white text-xl shadow-md">
+                        <i class="fa-solid fa-graduation-cap"></i>
                     </div>
-
-                    <div class="flex items-center gap-2 bg-emerald-950/60 border border-emerald-500/40 rounded-xl sm:rounded-2xl p-1.5 pr-3 cursor-pointer shadow hover:bg-emerald-900/60 transition active:scale-95 text-xs font-bold text-emerald-300" @click="showToast('Luck increased! 🍀')">
-                        <img src="goodluck.webp" alt="Good Luck Mascot" class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl object-cover">
-                        <span>More Informations!</span>
+                    <div>
+                        <h2 class="text-2xl font-bold text-white">Education & Academic Journey</h2>
+                        <p class="text-xs text-purple-300/80 font-quicksand">Schools attended and current degree program</p>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5 sm:gap-4">
-                    <div v-for="skill in skills" :key="skill.name" 
-                         class="bg-phantom-dark/70 hover:bg-purple-950/90 border-2 rounded-xl sm:rounded-2xl p-3 sm:p-4 transition transform hover:-translate-y-1 shadow-sm flex flex-col items-center text-center gap-1.5 sm:gap-2"
-                         :class="skill.borderColor">
-                        <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-xl flex items-center justify-center text-xl sm:text-2xl shadow border"
-                             :class="[skill.bgColor, skill.textColor, skill.iconBorder]">
-                            <i :class="skill.icon"></i>
+                <div class="space-y-4">
+                    <!-- School 1: University -->
+                    <div class="bg-phantom-dark/80 border-2 border-purple-500/40 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row justify-between sm:items-center gap-3 shadow-sm">
+                        <div class="flex items-start gap-3.5">
+                            <div class="w-10 h-10 rounded-xl bg-purple-900/80 border border-purple-500 flex items-center justify-center text-purple-300 text-lg shrink-0 mt-0.5">
+                                <i class="fa-solid fa-building-columns"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-white text-base">Cagayan State University - Carig Campus</h3>
+                                <p class="text-xs sm:text-sm text-phantom-lavender font-bold mt-0.5">Bachelor of Science in Computer Engineering</p>
+                                <p class="text-xs text-purple-300/70 font-quicksand mt-1">Currently enrolled • 4th Year Student</p>
+                            </div>
                         </div>
-                        <span class="font-bold text-white text-xs sm:text-sm truncate w-full">{{ skill.name }}</span>
-                        <span class="text-[10px] sm:text-[11px] text-purple-300 font-quicksand line-clamp-1">{{ skill.role }}</span>
+                        <span class="self-start sm:self-auto text-xs bg-emerald-950 text-emerald-300 border border-emerald-500/40 px-3 py-1 rounded-full font-bold">
+                            Higher Education
+                        </span>
+                    </div>
+
+                    <!-- School 2: High School -->
+                    <div class="bg-phantom-dark/80 border-2 border-purple-500/30 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row justify-between sm:items-center gap-3 shadow-sm">
+                        <div class="flex items-start gap-3.5">
+                            <div class="w-10 h-10 rounded-xl bg-indigo-900/80 border border-indigo-500 flex items-center justify-center text-indigo-300 text-lg shrink-0 mt-0.5">
+                                <i class="fa-solid fa-school"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-white text-base">Luna National High School</h3>
+                                <p class="text-xs text-purple-200/90 font-semibold mt-0.5">Junior High School & Senior High School</p>
+                                <p class="text-xs text-purple-300/70 font-quicksand mt-1">Secondary Education Completed</p>
+                            </div>
+                        </div>
+                        <span class="self-start sm:self-auto text-xs bg-purple-900/60 text-purple-300 border border-purple-500/40 px-3 py-1 rounded-full font-bold">
+                            High School & SHS
+                        </span>
+                    </div>
+
+                    <!-- School 3: Elementary -->
+                    <div class="bg-phantom-dark/80 border-2 border-purple-500/30 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row justify-between sm:items-center gap-3 shadow-sm">
+                        <div class="flex items-start gap-3.5">
+                            <div class="w-10 h-10 rounded-xl bg-purple-950 border border-purple-700 flex items-center justify-center text-pink-400 text-lg shrink-0 mt-0.5">
+                                <i class="fa-solid fa-book-bookmark"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-white text-base">Luna Central School</h3>
+                                <p class="text-xs text-purple-200/90 font-semibold mt-0.5">Elementary Education</p>
+                                <p class="text-xs text-purple-300/70 font-quicksand mt-1">Primary Education Completed</p>
+                            </div>
+                        </div>
+                        <span class="self-start sm:self-auto text-xs bg-purple-950 text-purple-300 border border-purple-700 px-3 py-1 rounded-full font-bold">
+                            Elementary
+                        </span>
                     </div>
                 </div>
             </section>
 
             <!-- OFFICIAL CERTIFICATES SECTION -->
-            <section class="bg-phantom-card/90 backdrop-blur-md rounded-2xl sm:rounded-3xl p-4 sm:p-8 border-2 sm:border-3 border-phantom-border shadow-phantom-card relative overflow-hidden">
+            <section class="bg-phantom-card/90 backdrop-blur-md rounded-2xl sm:rounded-3xl p-5 sm:p-8 border-2 sm:border-3 border-phantom-border shadow-phantom-card relative overflow-hidden">
                 <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 mb-5">
                     <div class="flex items-center gap-3">
-                        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-gradient-to-tr from-purple-600 to-pink-500 flex items-center justify-center text-white text-lg sm:text-xl shadow-md">
+                        <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-purple-600 to-pink-500 flex items-center justify-center text-white text-xl shadow-md">
                             <i class="fa-solid fa-certificate"></i>
                         </div>
                         <div>
-                            <h2 class="text-xl sm:text-2xl font-bold text-white">Certificates & Credentials</h2>
-                            <p class="text-[11px] sm:text-xs text-purple-300/80 font-quicksand">Official training, OJT & summit achievements</p>
+                            <h2 class="text-2xl font-bold text-white">Certificates & Credentials</h2>
+                            <p class="text-xs text-purple-300/80 font-quicksand">Official training, OJT & summit achievements</p>
                         </div>
                     </div>
 
@@ -363,6 +445,45 @@
                                 Inspect Card →
                             </span>
                         </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Interactive Alice Companion Section -->
+            <section class="bg-gradient-to-r from-purple-900/40 via-phantom-card to-indigo-900/40 rounded-2xl sm:rounded-3xl p-4 sm:p-6 border-2 sm:border-3 border-phantom-border shadow-phantom-card relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-6">
+                
+                <div class="relative shrink-0 flex items-center justify-center">
+                    <div class="absolute w-28 h-28 sm:w-36 sm:h-36 bg-purple-600/30 rounded-full blur-2xl"></div>
+                    
+                    <div class="w-28 h-32 sm:w-36 sm:h-40 relative alice-companion cursor-pointer" @click="triggerAliceQuote">
+                        <img src="Alice_animation.gif" 
+                             @error="handleImageError($event, 'Alice_animation.webp')" 
+                             alt="Alice Phantom Chibi" 
+                             class="w-full h-full object-contain filter drop-shadow-[0_0_12px_rgba(168,85,247,0.8)]">
+                    </div>
+                </div>
+
+                <div class="flex-1 w-full bg-phantom-dark/80 rounded-xl sm:rounded-2xl p-4 sm:p-5 border-2 border-purple-500/30 relative text-center md:text-left shadow-inner">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-[11px] sm:text-xs uppercase tracking-widest text-phantom-lavender font-bold flex items-center gap-1.5">
+                            <i class="fa-solid fa-cat text-pink-400"></i> Companion: Alice 
+                        </span>
+                        <span class="text-[10px] bg-purple-900/80 text-purple-300 px-2 py-0.5 rounded-full border border-purple-700">
+                            Tap Alice!
+                        </span>
+                    </div>
+
+                    <p class="text-sm sm:text-base text-purple-100 font-quicksand font-bold italic transition-all duration-300 leading-snug">
+                        "{{ currentAliceDialogue }}"
+                    </p>
+
+                    <div class="mt-3 flex flex-wrap gap-2 justify-center md:justify-start">
+                        <button @click="triggerAliceQuote" class="bg-purple-800/60 hover:bg-purple-700 text-purple-200 text-xs px-3 py-1.5 rounded-lg border border-purple-500/40 transition active:scale-95">
+                            🔮 Cast Spell
+                        </button>
+                        <button @click="openGithubModal" class="bg-pink-900/40 hover:bg-pink-800/60 text-pink-200 text-xs px-3 py-1.5 rounded-lg border border-pink-500/40 transition flex items-center gap-1.5 active:scale-95">
+                            <i class="fa-brands fa-github"></i> Summon GitHub
+                        </button>
                     </div>
                 </div>
             </section>
@@ -500,6 +621,16 @@
                     showToast(isFaceRevealed.value ? "Revealed Mark's real face! 📸✨" : "Switched back to avatar! 🔮");
                 }
 
+                // KyuTea Repo Invoker State
+                const showKyuteaRepo = ref(false);
+
+                function toggleKyuteaRepo() {
+                    showKyuteaRepo.value = !showKyuteaRepo.value;
+                    if (showKyuteaRepo.value) {
+                        showToast("Invoked KyuTea Cafe Repository Card! 🔮✨");
+                    }
+                }
+
                 // Toast State
                 const toast = ref({
                     visible: false,
@@ -545,13 +676,12 @@
 
                 // Alice Companion State
                 const aliceQuotes = [
-                    "\"Fuhu~ Mark completed 240 hours of OJT at GR8 Tech Enterprise Inc.! Super impressive!\"",
-                    "\"VS Code is Mark's favorite spellbook! Clean extensions and fast magic!\"",
-                    "\"Need a developer in Tuguegarao City? Mark is ready for your quest!\"",
-                    "\"Tap any of Mark's official certificates to inspect his credentials! ✨\"",
-                    "\"Vue 3 + Tailwind CSS + JavaScript = Luck has been strengthened!\"",
-                    "\"Check out Mark's GitHub at github.com/Mark-hub-afk for cool code repositories!\"",
-                    "\"Fufufu~ Don't forget to download Mark's CV as a PDF down below! 📜\""
+                    "\"Fuhu~ Mark built KyuTea Cafe with Django REST & Vue 3! Check out the repo card!\"",
+                    "\"Did you know Mark is pursuing a Bachelor of Science in Computer Engineering at CSU Carig?\"",
+                    "\"Mark served as the Web Tester for the Boarding House Finder group project!\"",
+                    "\"Mark completed 240 hours of OJT at GR8 Tech Enterprise Inc. in Cubao!\"",
+                    "\"Tap any certificate spell card to inspect Mark's verified credentials! ✨\"",
+                    "\"Check out Mark's GitHub at github.com/Mark-hub-afk for cool code repositories!\""
                 ];
                 const currentAliceQuoteIndex = ref(0);
                 const currentAliceDialogue = computed(() => aliceQuotes[currentAliceQuoteIndex.value]);
@@ -560,18 +690,6 @@
                     currentAliceQuoteIndex.value = (currentAliceQuoteIndex.value + 1) % aliceQuotes.length;
                     showToast("Alice whispered something ( ಠ ‸ ಠ ) ! 👻");
                 }
-
-                // Skills Data
-                const skills = ref([
-                    { name: 'VS Code', role: 'Primary Editor', icon: 'fa-solid fa-code', borderColor: 'border-sky-500/30 hover:border-sky-400', bgColor: 'bg-sky-950', textColor: 'text-sky-400', iconBorder: 'border-sky-800' },
-                    { name: 'HTML & CSS', role: 'Web Fundamentals', icon: 'fa-brands fa-html5', borderColor: 'border-orange-500/30 hover:border-orange-400', bgColor: 'bg-orange-950', textColor: 'text-orange-400', iconBorder: 'border-orange-800' },
-                    { name: 'Tailwind CSS', role: 'Modern Styling', icon: 'fa-solid fa-wind', borderColor: 'border-cyan-500/30 hover:border-cyan-400', bgColor: 'bg-cyan-950', textColor: 'text-cyan-400', iconBorder: 'border-cyan-800' },
-                    { name: 'JavaScript', role: 'Interactivity & Logic', icon: 'fa-brands fa-js', borderColor: 'border-yellow-500/30 hover:border-yellow-400', bgColor: 'bg-amber-950', textColor: 'text-yellow-400', iconBorder: 'border-amber-800' },
-                    { name: 'React & Web UI', role: 'Component Design', icon: 'fa-brands fa-react', borderColor: 'border-blue-500/30 hover:border-blue-400', bgColor: 'bg-blue-950', textColor: 'text-blue-400', iconBorder: 'border-blue-800' },
-                    { name: 'Vue 3 Framework', role: 'Reactive Frontend', icon: 'fa-brands fa-vuejs', borderColor: 'border-emerald-500/30 hover:border-emerald-400', bgColor: 'bg-emerald-950', textColor: 'text-emerald-400', iconBorder: 'border-emerald-800' },
-                    { name: 'Git & GitHub', role: 'Version Control', icon: 'fa-brands fa-github', borderColor: 'border-pink-500/30 hover:border-pink-400', bgColor: 'bg-pink-950', textColor: 'text-pink-400', iconBorder: 'border-pink-800' },
-                    { name: 'Responsive Web', role: 'Mobile-First UI', icon: 'fa-solid fa-mobile-screen-button', borderColor: 'border-purple-500/30 hover:border-purple-400', bgColor: 'bg-purple-950', textColor: 'text-purple-300', iconBorder: 'border-purple-800' }
-                ]);
 
                 // Certificates Data
                 const certificates = ref([
@@ -677,7 +795,7 @@
                             doc.setFontSize(12);
                             doc.setFont("helvetica", "normal");
                             doc.setTextColor(255, 255, 255);
-                            doc.text("Full-Stack Web Developer | Vue 3 & VS Code User", 14, 32);
+                            doc.text("BS Computer Engineering | Web Developer", 14, 32);
 
                             doc.setTextColor(50, 50, 50);
                             doc.setFontSize(10);
@@ -693,51 +811,54 @@
                             doc.setFont("helvetica", "bold");
                             doc.setFontSize(12);
                             doc.setTextColor(100, 40, 160);
-                            doc.text("SUMMARY", 14, 92);
-
-                            doc.setFont("helvetica", "normal");
-                            doc.setFontSize(10);
-                            doc.setTextColor(60, 60, 60);
-                            doc.text("Aspiring web developer based in Tuguegarao City. Experienced in building responsive,", 14, 100);
-                            doc.text("modern web applications using HTML, CSS, JavaScript, Vue 3, Tailwind CSS, and VS Code.", 14, 107);
-
-                            doc.setFont("helvetica", "bold");
-                            doc.setFontSize(12);
-                            doc.setTextColor(100, 40, 160);
-                            doc.text("ON-THE-JOB TRAINING / EXPERIENCE", 14, 121);
+                            doc.text("EDUCATION", 14, 92);
 
                             doc.setFont("helvetica", "bold");
                             doc.setFontSize(10);
                             doc.setTextColor(30, 30, 30);
-                            doc.text("• GR8 Tech Enterprise Inc. — HR-IT Department (240 Hours)", 14, 129);
+                            doc.text("• Cagayan State University - Carig Campus", 14, 100);
                             doc.setFont("helvetica", "normal");
-                            doc.text("   Duration: May 04, 2026 – June 06, 2026 | Location: Cubao, Quezon City", 14, 135);
+                            doc.text("   Bachelor of Science in Computer Engineering (4th Year)", 14, 106);
+
+                            doc.setFont("helvetica", "bold");
+                            doc.text("• Luna National High School", 14, 114);
+                            doc.setFont("helvetica", "normal");
+                            doc.text("   Junior High School & Senior High School", 14, 120);
+
+                            doc.setFont("helvetica", "bold");
+                            doc.text("• Luna Central School", 14, 128);
+                            doc.setFont("helvetica", "normal");
+                            doc.text("   Elementary Education", 14, 134);
 
                             doc.setFont("helvetica", "bold");
                             doc.setFontSize(12);
                             doc.setTextColor(100, 40, 160);
-                            doc.text("SKILLS & TOOLS", 14, 149);
-
-                            doc.setFont("helvetica", "normal");
-                            doc.setFontSize(10);
-                            doc.setTextColor(60, 60, 60);
-                            doc.text("• Primary IDE: VS Code", 14, 157);
-                            doc.text("• Frontend & Frameworks: Vue 3, Tailwind CSS, HTML5, CSS3", 14, 164);
-                            doc.text("• Languages: JavaScript, Python", 14, 171);
-                            doc.text("• Tools & Systems: Git, GitHub, REST APIs, Responsive Web Design", 14, 178);
-
-                            doc.setFont("helvetica", "bold");
-                            doc.setFontSize(12);
-                            doc.setTextColor(100, 40, 160);
-                            doc.text("CERTIFICATIONS & SUMMITS", 14, 192);
+                            doc.text("FEATURED PROJECTS", 14, 148);
 
                             doc.setFont("helvetica", "bold");
                             doc.setFontSize(10);
                             doc.setTextColor(30, 30, 30);
-                            doc.text("1. 240 Hours On-the-Job Training (GR8 Tech Enterprise Inc.) — June 2026", 14, 200);
-                            doc.text("2. Regional ITE Summit 2026 (SPUP) — July 2026", 14, 207);
-                            doc.text("3. Frontiers of Computer Engineering 2025 (CSU & ICpEP) — Dec 2025", 14, 214);
-                            doc.text("4. ADBI Cybersecurity Course — October 2026", 14, 221);
+                            doc.text("1. KyuTea Cafe (Full-Stack Coffee Shop Dashboard)", 14, 156);
+                            doc.setFont("helvetica", "normal");
+                            doc.text("   Technologies: Django REST Framework, Vue 3, Tailwind CSS, PostgreSQL", 14, 162);
+                            doc.text("   Repo: https://github.com/Mark-hub-afk/kyutea-cafe.git", 14, 168);
+
+                            doc.setFont("helvetica", "bold");
+                            doc.text("2. Boarding House Finder (Web Quality Assurance)", 14, 176);
+                            doc.setFont("helvetica", "normal");
+                            doc.text("   Role: Web Tester — Functionality testing, UI/UX evaluation & bug reporting", 14, 182);
+
+                            doc.setFont("helvetica", "bold");
+                            doc.setFontSize(12);
+                            doc.setTextColor(100, 40, 160);
+                            doc.text("CERTIFICATIONS & TRAINING", 14, 196);
+
+                            doc.setFont("helvetica", "bold");
+                            doc.setFontSize(10);
+                            doc.setTextColor(30, 30, 30);
+                            doc.text("• 240 Hours OJT - GR8 Tech Enterprise Inc. (May - June 2026)", 14, 204);
+                            doc.text("• Regional ITE Summit 2026 (SPUP) — July 2026", 14, 211);
+                            doc.text("• Frontiers of Computer Engineering 2025 (CSU & ICpEP) — Dec 2025", 14, 218);
 
                             doc.save("Mark_Johnson_Gerardo_CV.pdf");
                             showToast("Downloaded Mark_Johnson_Gerardo_CV.pdf! 📄");
@@ -752,12 +873,13 @@
                     profile,
                     isFaceRevealed,
                     toggleAvatarFace,
+                    showKyuteaRepo,
+                    toggleKyuteaRepo,
                     toast,
                     showToast,
                     copyToClipboard,
                     currentAliceDialogue,
                     triggerAliceQuote,
-                    skills,
                     certificates,
                     activeCertModal,
                     selectedCert,
