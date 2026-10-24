@@ -270,7 +270,7 @@
 
                         <!-- Interactive Repo Invoker Card -->
                         <div class="border-t border-purple-900/80 pt-4">
-                            <button @click="toggleKyuteaRepo" class="bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-500 hover:to-pink-600 text-white px-4 py-2.5 rounded-xl font-bold text-xs shadow flex items-center gap-2 transition active:scale-95">
+                            <button @click="toggleKyuteaRepo" class="bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-500 hover:to-pink-600 text-white px-4 py-2.5 rounded-xl font-bold text-xs shadow flex items-center gap-2 transition active:scale-95 cursor-pointer">
                                 <i class="fa-solid fa-wand-magic-sparkles"></i> 
                                 {{ showKyuteaRepo ? 'Hide Repository Card' : 'Invoke Repository Card' }}
                             </button>
@@ -468,10 +468,10 @@
                     </p>
 
                     <div class="mt-3 flex flex-wrap gap-2 justify-center md:justify-start">
-                        <button @click="triggerAliceQuote" class="bg-purple-800/60 hover:bg-purple-700 text-purple-200 text-xs px-3 py-1.5 rounded-lg border border-purple-500/40 transition active:scale-95">
+                        <button @click="triggerAliceQuote" class="bg-purple-800/60 hover:bg-purple-700 text-purple-200 text-xs px-3 py-1.5 rounded-lg border border-purple-500/40 transition active:scale-95 cursor-pointer">
                             🔮 Cast Spell
                         </button>
-                        <button @click="openGithubModal" class="bg-pink-900/40 hover:bg-pink-800/60 text-pink-200 text-xs px-3 py-1.5 rounded-lg border border-pink-500/40 transition flex items-center gap-1.5 active:scale-95">
+                        <button @click="openGithubModal" class="bg-pink-900/40 hover:bg-pink-800/60 text-pink-200 text-xs px-3 py-1.5 rounded-lg border border-pink-500/40 transition flex items-center gap-1.5 active:scale-95 cursor-pointer">
                             <i class="fa-brands fa-github"></i> Summon GitHub
                         </button>
                     </div>
@@ -489,7 +489,7 @@
 
                 <div class="flex justify-center w-full md:w-auto">
                     <button @click="downloadCV" 
-                            class="bg-gradient-to-r from-purple-600 via-pink-500 to-purple-500 hover:from-purple-500 hover:to-pink-600 text-white px-6 py-3 rounded-xl sm:rounded-2xl font-bold text-xs sm:text-sm shadow-phantom-glow transition flex items-center justify-center gap-2 border-2 border-purple-300 active:scale-95">
+                            class="bg-gradient-to-r from-purple-600 via-pink-500 to-purple-500 hover:from-purple-500 hover:to-pink-600 text-white px-6 py-3 rounded-xl sm:rounded-2xl font-bold text-xs sm:text-sm shadow-phantom-glow transition flex items-center justify-center gap-2 border-2 border-purple-300 active:scale-95 cursor-pointer">
                         <i class="fa-solid fa-file-arrow-down"></i> Download CV (PDF)
                     </button>
                 </div>
@@ -537,10 +537,10 @@
                     </div>
 
                     <div class="flex items-center justify-end gap-2 sm:gap-3 mt-3">
-                        <button @click="closeCertModal" class="px-4 py-2 rounded-xl text-xs font-bold text-purple-300 hover:text-white bg-purple-950/60 border border-purple-800 transition">
+                        <button @click="closeCertModal" class="px-4 py-2 rounded-xl text-xs font-bold text-purple-300 hover:text-white bg-purple-950/60 border border-purple-800 transition cursor-pointer">
                             Close
                         </button>
-                        <button @click="copyToClipboard(selectedCert.title, 'Certificate name copied!')" class="px-4 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-500 hover:to-pink-600 transition shadow flex items-center gap-1.5">
+                        <button @click="copyToClipboard(selectedCert.title, 'Certificate name copied!')" class="px-4 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-500 hover:to-pink-600 transition shadow flex items-center gap-1.5 cursor-pointer">
                             <i class="fa-solid fa-copy"></i> Copy Title
                         </button>
                     </div>
@@ -552,7 +552,7 @@
         <Transition name="fade">
             <div v-if="showGithubModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-phantom-dark/85 backdrop-blur-md">
                 <div class="bg-phantom-card border-2 sm:border-3 border-phantom-glow rounded-2xl sm:rounded-3xl max-w-md w-full p-5 sm:p-6 relative text-center shadow-phantom-glow">
-                    <button @click="closeGithubModal" class="absolute top-3 right-3 sm:top-4 sm:right-4 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-purple-950 text-purple-300 border border-purple-700 hover:bg-purple-800 hover:text-white flex items-center justify-center transition">
+                    <button @click="closeGithubModal" class="absolute top-3 right-3 sm:top-4 sm:right-4 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-purple-950 text-purple-300 border border-purple-700 hover:bg-purple-800 hover:text-white flex items-center justify-center transition cursor-pointer">
                         <i class="fa-solid fa-xmark text-base sm:text-lg"></i>
                     </button>
 
@@ -617,10 +617,28 @@
                     }
                 }
 
-                // KyuTea Repo Invoker State
+                // KyuTea Repo Invoker State & Counter Audio
                 const showKyuteaRepo = ref(false);
+                const invokeClickCount = ref(0);
 
                 function toggleKyuteaRepo() {
+                    invokeClickCount.value++;
+
+                    let soundFile = '';
+                    if (invokeClickCount.value === 3) {
+                        soundFile = 'speaki_yap.mp3';
+                        invokeClickCount.value = 0; // Reset counter after 3rd click
+                    } else {
+                        soundFile = 'speaki_auu.mp3';
+                    }
+
+                    // Play selected MP3 audio
+                    const sound = new Audio(soundFile);
+                    sound.volume = 0.7;
+                    sound.play().catch(error => {
+                        console.log("Audio playback prevented or file missing:", error);
+                    });
+
                     showKyuteaRepo.value = !showKyuteaRepo.value;
                     if (showKyuteaRepo.value) {
                         showToast("Invoked KyuTea Cafe Repository Card! 🔮✨");
@@ -684,7 +702,7 @@
 
                 function triggerAliceQuote() {
                     currentAliceQuoteIndex.value = (currentAliceQuoteIndex.value + 1) % aliceQuotes.length;
-                    showToast("Alice whispered something ( ಠ ‸ ಠ ) ! ghost");
+                    showToast("Alice Played A Prank On You");
                 }
 
                 // Certificates Data
@@ -872,6 +890,7 @@
                     toggleAvatarFace,
                     onFaceImageError,
                     showKyuteaRepo,
+                    invokeClickCount,
                     toggleKyuteaRepo,
                     toast,
                     showToast,
