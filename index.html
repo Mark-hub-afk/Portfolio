@@ -53,11 +53,15 @@
 
         @keyframes float-slow {
             0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-12px) rotate(3deg); }
+            50% { transform: translateY(-12px) rotate(4deg); }
         }
         @keyframes float-reverse {
             0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(10px) rotate(-4deg); }
+            50% { transform: translateY(10px) rotate(-5deg); }
+        }
+        @keyframes float-mid {
+            0%, 100% { transform: translateY(0px) rotate(-2deg) scale(1); }
+            50% { transform: translateY(-14px) rotate(3deg) scale(1.03); }
         }
         @keyframes pulse-phantom {
             0%, 100% { box-shadow: 0 0 15px rgba(168, 85, 247, 0.5), inset 0 0 10px rgba(168, 85, 247, 0.3); }
@@ -68,8 +72,9 @@
             50% { transform: scale(1.03) translateY(-6px); }
         }
 
-        .animate-float { animation: float-slow 4s ease-in-out infinite; }
-        .animate-float-rev { animation: float-reverse 5s ease-in-out infinite; }
+        .animate-float-1 { animation: float-slow 4.2s ease-in-out infinite; }
+        .animate-float-2 { animation: float-reverse 5.1s ease-in-out infinite; }
+        .animate-float-3 { animation: float-mid 4.6s ease-in-out infinite; }
         .phantom-ring { animation: pulse-phantom 3.5s infinite; }
         .alice-companion { animation: ghost-glide 3s ease-in-out infinite; }
 
@@ -105,20 +110,23 @@
             <span class="text-center sm:text-left">{{ toast.message }}</span>
         </div>
 
-        <div class="hidden xl:block fixed top-24 left-6 w-28 h-28 z-20 animate-float pointer-events-auto cursor-pointer group" @click="showToast('Alice Pose activated! ✨')">
-            <div class="w-full h-full rounded-2xl overflow-hidden border-2 border-purple-400/50 shadow-phantom-glow bg-phantom-card/60 p-1 backdrop-blur-sm transition transform group-hover:scale-110">
+        <!-- Floating Chibi Badge 1 (Alice Pose) -->
+        <div class="fixed top-16 left-2 sm:top-24 sm:left-6 w-16 h-16 sm:w-24 sm:h-24 md:w-28 md:h-28 z-30 animate-float-1 pointer-events-auto cursor-pointer group" @click="showToast('Alice Pose activated! ✨')">
+            <div class="w-full h-full rounded-2xl overflow-hidden border-2 border-purple-400/60 shadow-phantom-glow bg-phantom-card/80 p-1 backdrop-blur-md transition transform group-hover:scale-110 active:scale-95">
                 <img src="alice_pose.webp" alt="Alice Pose" class="w-full h-full object-cover rounded-xl">
             </div>
         </div>
 
-        <div class="hidden xl:block fixed top-24 right-6 w-28 h-28 z-20 animate-float-rev pointer-events-auto cursor-pointer group" @click="showToast('Merp mode activated! 🤪')">
-            <div class="w-full h-full rounded-2xl overflow-hidden border-2 border-pink-400/50 shadow-phantom-glow bg-phantom-card/60 p-1 backdrop-blur-sm transition transform group-hover:scale-110">
+        <!-- Floating Chibi Badge 2 (Merp Alice) -->
+        <div class="fixed top-20 right-2 sm:top-24 sm:right-6 w-16 h-16 sm:w-24 sm:h-24 md:w-28 md:h-28 z-30 animate-float-2 pointer-events-auto cursor-pointer group" @click="showToast('Merp mode activated! 🤪')">
+            <div class="w-full h-full rounded-2xl overflow-hidden border-2 border-pink-400/60 shadow-phantom-glow bg-phantom-card/80 p-1 backdrop-blur-md transition transform group-hover:scale-110 active:scale-95">
                 <img src="merp.webp" alt="Merp Alice" class="w-full h-full object-cover rounded-xl">
             </div>
         </div>
 
-        <div class="hidden xl:block fixed bottom-20 right-6 w-28 h-28 z-20 animate-float pointer-events-auto cursor-pointer group" @click="showToast('Good luck clover spell activated! 🍀')">
-            <div class="w-full h-full rounded-2xl overflow-hidden border-2 border-emerald-400/50 shadow-phantom-glow bg-phantom-card/60 p-1 backdrop-blur-sm transition transform group-hover:scale-110">
+        <!-- Floating Chibi Badge 3 (Goodluck Clover) -->
+        <div class="fixed bottom-12 right-3 sm:bottom-20 sm:right-6 w-16 h-16 sm:w-24 sm:h-24 md:w-28 md:h-28 z-30 animate-float-3 pointer-events-auto cursor-pointer group" @click="showToast('Good luck clover spell activated! 🍀')">
+            <div class="w-full h-full rounded-2xl overflow-hidden border-2 border-emerald-400/60 shadow-phantom-glow bg-phantom-card/80 p-1 backdrop-blur-md transition transform group-hover:scale-110 active:scale-95">
                 <img src="goodluck.webp" alt="Goodluck Mascot" class="w-full h-full object-cover rounded-xl">
             </div>
         </div>
@@ -133,21 +141,6 @@
                     <span class="font-bold text-base sm:text-lg tracking-wide text-phantom-lavender truncate">{{ profile.name }}</span>
                 </div>
             </nav>
-
-            <div class="flex xl:hidden justify-center items-center gap-3 bg-phantom-card/70 border border-phantom-border p-2.5 rounded-2xl backdrop-blur-md shadow-sm">
-                <div class="flex items-center gap-1.5 text-xs text-purple-300 font-bold mr-1">
-                    <i class="fa-solid fa-sparkles text-pink-400"></i> Chibi Badges:
-                </div>
-                <div @click="showToast('Alice Pose! ✨')" class="w-10 h-10 rounded-xl overflow-hidden border-2 border-purple-400/60 active:scale-90 transition cursor-pointer">
-                    <img src="alice_pose.webp" alt="Alice Pose" class="w-full h-full object-cover">
-                </div>
-                <div @click="showToast('Merp mode! 🤪')" class="w-10 h-10 rounded-xl overflow-hidden border-2 border-pink-400/60 active:scale-90 transition cursor-pointer">
-                    <img src="merp.webp" alt="Merp Alice" class="w-full h-full object-cover">
-                </div>
-                <div @click="showToast('Good luck clover! 🍀')" class="w-10 h-10 rounded-xl overflow-hidden border-2 border-emerald-400/60 active:scale-90 transition cursor-pointer">
-                    <img src="goodluck.webp" alt="Goodluck Mascot" class="w-full h-full object-cover">
-                </div>
-            </div>
 
             <header class="bg-phantom-card/90 backdrop-blur-md rounded-2xl sm:rounded-3xl p-5 sm:p-10 border-2 sm:border-3 border-phantom-border shadow-phantom-card relative overflow-hidden transition-all duration-300">
                 <div class="absolute -top-16 -right-16 w-36 h-36 sm:w-48 sm:h-48 bg-phantom-glow/20 rounded-full blur-3xl pointer-events-none"></div>
