@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mark Johnson Gerardo | Cute Portfolio </title>
+    <title>Mark Johnson Gerardo | Cute Portfolio</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Vue 3 CDN -->
@@ -80,7 +80,7 @@
         .alice-companion { animation: ghost-glide 3s ease-in-out infinite; }
 
         /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #18122B; }
         ::-webkit-scrollbar-thumb { background: #392B58; border-radius: 9999px; border: 2px solid #18122B; }
         ::-webkit-scrollbar-thumb:hover { background: #A855F7; }
@@ -99,13 +99,13 @@
 
     <div id="app">
         <!-- Toast Notification Banner -->
-        <div class="fixed top-5 right-5 z-50 transform transition-all duration-300 bg-phantom-card text-phantom-lavender px-5 py-3 rounded-2xl shadow-phantom-glow flex items-center gap-3 border-2 border-phantom-glow font-medium text-base pointer-events-none"
-             :class="toast.visible ? 'translate-x-0' : 'translate-x-full'">
+        <div class="fixed top-4 right-4 left-4 sm:left-auto sm:right-5 sm:max-w-md z-50 transform transition-all duration-300 bg-phantom-card text-phantom-lavender px-4 py-3 rounded-2xl shadow-phantom-glow flex items-center justify-center sm:justify-start gap-3 border-2 border-phantom-glow font-medium text-sm sm:text-base pointer-events-none"
+             :class="toast.visible ? 'translate-y-0 opacity-100' : '-translate-y-10 opacity-0'">
             <i class="fa-solid fa-ghost text-purple-400 animate-bounce"></i>
-            <span>{{ toast.message }}</span>
+            <span class="text-center sm:text-left">{{ toast.message }}</span>
         </div>
 
-        <!-- Floating Decorative Alice Stickers (Top-Left & Top-Right) -->
+        <!-- Floating Desktop Stickers (XL Screens) -->
         <div class="hidden xl:block fixed top-24 left-6 w-28 h-28 z-20 animate-float pointer-events-auto cursor-pointer group" @click="showToast('Alice Pose activated! ✨')">
             <div class="w-full h-full rounded-2xl overflow-hidden border-2 border-purple-400/50 shadow-phantom-glow bg-phantom-card/60 p-1 backdrop-blur-sm transition transform group-hover:scale-110">
                 <img src="alice_pose.webp" alt="Alice Pose" class="w-full h-full object-cover rounded-xl">
@@ -118,89 +118,104 @@
             </div>
         </div>
 
-        <!-- Bottom Right Good Luck Sticker -->
         <div class="hidden xl:block fixed bottom-20 right-6 w-28 h-28 z-20 animate-float pointer-events-auto cursor-pointer group" @click="showToast('Good luck clover spell activated! 🍀')">
             <div class="w-full h-full rounded-2xl overflow-hidden border-2 border-emerald-400/50 shadow-phantom-glow bg-phantom-card/60 p-1 backdrop-blur-sm transition transform group-hover:scale-110">
                 <img src="goodluck.webp" alt="Goodluck Mascot" class="w-full h-full object-cover rounded-xl">
             </div>
         </div>
 
-        <!-- Floating Background Decorative Cards -->
-        <div class="absolute top-12 left-5 md:left-20 w-12 h-16 bg-purple-900/40 border-2 border-purple-400/40 rounded-xl animate-float pointer-events-none flex items-center justify-center text-purple-300 opacity-60 backdrop-blur-sm">
+        <!-- Floating Background Glows -->
+        <div class="absolute top-12 left-5 md:left-20 w-12 h-16 bg-purple-900/40 border-2 border-purple-400/40 rounded-xl animate-float pointer-events-none hidden sm:flex items-center justify-center text-purple-300 opacity-60 backdrop-blur-sm">
             <i class="fa-solid fa-diamond text-xs"></i>
         </div>
-        <div class="absolute top-96 right-6 md:right-16 w-14 h-20 bg-indigo-900/40 border-2 border-phantom-lavender/40 rounded-xl animate-float-rev pointer-events-none flex items-center justify-center text-phantom-lavender opacity-60 backdrop-blur-sm">
+        <div class="absolute top-96 right-6 md:right-16 w-14 h-20 bg-indigo-900/40 border-2 border-phantom-lavender/40 rounded-xl animate-float-rev pointer-events-none hidden sm:flex items-center justify-center text-phantom-lavender opacity-60 backdrop-blur-sm">
             <i class="fa-solid fa-skull text-xs"></i>
         </div>
 
         <!-- Main Container -->
-        <main class="max-w-4xl mx-auto px-4 py-6 md:py-10 w-full flex flex-col gap-8 relative z-10">
+        <main class="max-w-4xl mx-auto px-3 sm:px-6 py-4 sm:py-10 w-full flex flex-col gap-5 sm:gap-8 relative z-10">
 
             <!-- Navigation Bar -->
-            <nav class="bg-phantom-card/80 backdrop-blur-md border-2 border-phantom-border rounded-full px-6 py-3 flex items-center justify-between shadow-phantom-card">
-                <div class="flex items-center gap-3">
-                    <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-purple-600 to-pink-500 flex items-center justify-center text-white text-sm shadow">
+            <nav class="bg-phantom-card/80 backdrop-blur-md border-2 border-phantom-border rounded-2xl sm:rounded-full px-4 sm:px-6 py-3 flex items-center justify-between shadow-phantom-card">
+                <div class="flex items-center gap-2.5 sm:gap-3">
+                    <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-gradient-to-tr from-purple-600 to-pink-500 flex items-center justify-center text-white text-xs sm:text-sm shadow">
                         <i class="fa-solid fa-wand-magic-sparkles"></i>
                     </div>
-                    <span class="font-bold text-lg tracking-wide text-phantom-lavender">{{ profile.name }}</span>
+                    <span class="font-bold text-base sm:text-lg tracking-wide text-phantom-lavender truncate">{{ profile.name }}</span>
                 </div>
             </nav>
 
-            <!-- Hero / Bio Section -->
-            <header class="bg-phantom-card/90 backdrop-blur-md rounded-3xl p-6 md:p-10 border-3 border-phantom-border shadow-phantom-card relative overflow-hidden transition-all duration-300">
-                <div class="absolute -top-16 -right-16 w-48 h-48 bg-phantom-glow/20 rounded-full blur-3xl pointer-events-none"></div>
-                <div class="absolute -bottom-16 -left-16 w-48 h-48 bg-pink-500/15 rounded-full blur-3xl pointer-events-none"></div>
+            <!-- MOBILE STICKER BAR (Only visible on small/mobile screens) -->
+            <div class="flex xl:hidden justify-center items-center gap-3 bg-phantom-card/70 border border-phantom-border p-2.5 rounded-2xl backdrop-blur-md shadow-sm">
+                <div class="flex items-center gap-1.5 text-xs text-purple-300 font-bold mr-1">
+                    <i class="fa-solid fa-sparkles text-pink-400"></i> Chibi Badges:
+                </div>
+                <div @click="showToast('Alice Pose! ✨')" class="w-10 h-10 rounded-xl overflow-hidden border-2 border-purple-400/60 active:scale-90 transition cursor-pointer">
+                    <img src="alice_pose.webp" alt="Alice Pose" class="w-full h-full object-cover">
+                </div>
+                <div @click="showToast('Merp mode! 🤪')" class="w-10 h-10 rounded-xl overflow-hidden border-2 border-pink-400/60 active:scale-90 transition cursor-pointer">
+                    <img src="merp.webp" alt="Merp Alice" class="w-full h-full object-cover">
+                </div>
+                <div @click="showToast('Good luck clover! 🍀')" class="w-10 h-10 rounded-xl overflow-hidden border-2 border-emerald-400/60 active:scale-90 transition cursor-pointer">
+                    <img src="goodluck.webp" alt="Goodluck Mascot" class="w-full h-full object-cover">
+                </div>
+            </div>
 
-                <div class="relative z-10 flex flex-col md:flex-row items-center gap-6 md:gap-8 text-center md:text-left">
+            <!-- Hero / Bio Section -->
+            <header class="bg-phantom-card/90 backdrop-blur-md rounded-2xl sm:rounded-3xl p-5 sm:p-10 border-2 sm:border-3 border-phantom-border shadow-phantom-card relative overflow-hidden transition-all duration-300">
+                <div class="absolute -top-16 -right-16 w-36 h-36 sm:w-48 sm:h-48 bg-phantom-glow/20 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute -bottom-16 -left-16 w-36 h-36 sm:w-48 sm:h-48 bg-pink-500/15 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="relative z-10 flex flex-col md:flex-row items-center gap-5 sm:gap-8 text-center md:text-left">
                     <!-- Profile Avatar -->
                     <div class="relative shrink-0">
-                        <div class="w-36 h-36 md:w-44 md:h-44 rounded-3xl bg-gradient-to-tr from-purple-600 via-pink-400 to-purple-400 p-1.5 phantom-ring transform transition hover:scale-105 duration-300">
-                            <div class="w-full h-full bg-phantom-dark rounded-[22px] overflow-hidden relative group">
+                        <div class="w-32 h-32 sm:w-40 sm:h-40 md:w-44 md:h-44 rounded-2xl sm:rounded-3xl bg-gradient-to-tr from-purple-600 via-pink-400 to-purple-400 p-1.5 phantom-ring transform transition hover:scale-105 duration-300">
+                            <div class="w-full h-full bg-phantom-dark rounded-[18px] sm:rounded-[22px] overflow-hidden relative group">
                                 <img :src="profile.avatar" 
                                      @error="handleImageError($event, 'https://placehold.co/400x400/251D3A/D8B4FE?text=Mark+Gerardo')" 
                                      alt="Mark Johnson Gerardo Avatar" 
                                      class="w-full h-full object-cover object-top transition duration-300 group-hover:scale-110">
                             </div>
                         </div>
-                        <span class="absolute -bottom-2 right-1 bg-gradient-to-r from-purple-600 to-pink-500 text-white text-xs px-3.5 py-1 rounded-full font-bold shadow-md border-2 border-phantom-card animate-bounce">
+                        <span class="absolute -bottom-2 right-1/2 md:right-1 transform translate-x-1/2 md:translate-x-0 bg-gradient-to-r from-purple-600 to-pink-500 text-white text-[11px] sm:text-xs px-3 py-0.5 sm:py-1 rounded-full font-bold shadow-md border-2 border-phantom-card whitespace-nowrap animate-bounce">
                             Hibernating in Elias 🔮
                         </span>
                     </div>
 
                     <!-- Bio Information -->
-                    <div class="flex flex-col gap-3 flex-1">
-                        <div class="flex flex-wrap items-center justify-center md:justify-start gap-2">
-                            <span class="bg-purple-900/60 text-purple-200 px-3.5 py-1 rounded-full text-xs font-semibold border border-purple-500/40 flex items-center gap-1.5">
+                    <div class="flex flex-col gap-2.5 sm:gap-3 flex-1 w-full">
+                        <div class="flex flex-wrap items-center justify-center md:justify-start gap-1.5 sm:gap-2 pt-2 md:pt-0">
+                            <span class="bg-purple-900/60 text-purple-200 px-3 py-0.5 rounded-full text-[11px] sm:text-xs font-semibold border border-purple-500/40 flex items-center gap-1.5">
                                 <i class="fa-solid fa-hat-wizard text-purple-400"></i> Game Enthusiast
                             </span>
-                            <span class="bg-emerald-950/80 text-emerald-300 px-3 py-1 rounded-full text-xs font-bold border border-emerald-500/40 flex items-center gap-1">
+                            <span class="bg-emerald-950/80 text-emerald-300 px-2.5 py-0.5 rounded-full text-[11px] sm:text-xs font-bold border border-emerald-500/40 flex items-center gap-1">
                                 <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> Online for Quests
                             </span>
                         </div>
 
-                        <h1 class="text-3xl md:text-4xl font-bold tracking-tight text-white flex items-center justify-center md:justify-start gap-2">
+                        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-white flex items-center justify-center md:justify-start gap-2">
                             {{ profile.name }}
                         </h1>
 
-                        <p class="text-sm md:text-base text-purple-200/90 font-quicksand font-semibold leading-relaxed">
+                        <p class="text-xs sm:text-sm md:text-base text-purple-200/90 font-quicksand font-semibold leading-relaxed">
                             Aspiring web developer based in <span class="text-phantom-lavender font-bold underline decoration-purple-500">{{ profile.location }}</span>. Crafting cute, high-performance web applications using <span class="text-emerald-400 font-bold">HTML</span>, <span class="text-orange-400 font-bold">CSS</span>, <span class="text-yellow-400 font-bold">JavaScript</span>, <span class="text-emerald-400 font-bold">Vue 3</span>, <span class="text-cyan-400 font-bold">Tailwind CSS</span>, and <span class="text-sky-300 font-bold">VS Code</span>. ✨
                         </p>
 
                         <!-- Contact Pills -->
-                        <div class="flex flex-wrap justify-center md:justify-start gap-2.5 pt-2">
+                        <div class="flex flex-wrap justify-center md:justify-start gap-2 pt-1 sm:pt-2">
                             <button @click="copyToClipboard(profile.email, 'Email copied!')" 
-                                    class="bg-purple-950/70 hover:bg-purple-900 text-purple-200 px-3.5 py-1.5 rounded-xl text-xs md:text-sm font-medium border border-purple-500/40 transition hover:border-phantom-glow flex items-center gap-2 cursor-pointer shadow-sm">
-                                <i class="fa-solid fa-envelope text-pink-400"></i> {{ profile.email }}
-                                <i class="fa-regular fa-copy text-xs opacity-60"></i>
+                                    class="bg-purple-950/70 hover:bg-purple-900 active:scale-95 text-purple-200 px-3 py-1.5 rounded-xl text-xs font-medium border border-purple-500/40 transition flex items-center gap-1.5 cursor-pointer shadow-sm">
+                                <i class="fa-solid fa-envelope text-pink-400"></i> <span class="truncate max-w-[170px] sm:max-w-none">{{ profile.email }}</span>
+                                <i class="fa-regular fa-copy text-[10px] opacity-60"></i>
                             </button>
 
                             <button @click="copyToClipboard(profile.phone, 'Phone number copied!')" 
-                                    class="bg-purple-950/70 hover:bg-purple-900 text-purple-200 px-3.5 py-1.5 rounded-xl text-xs md:text-sm font-medium border border-purple-500/40 transition hover:border-phantom-glow flex items-center gap-2 cursor-pointer shadow-sm">
+                                    class="bg-purple-950/70 hover:bg-purple-900 active:scale-95 text-purple-200 px-3 py-1.5 rounded-xl text-xs font-medium border border-purple-500/40 transition flex items-center gap-1.5 cursor-pointer shadow-sm">
                                 <i class="fa-solid fa-phone text-sky-400"></i> {{ profile.phone }}
-                                <i class="fa-regular fa-copy text-xs opacity-60"></i>
+                                <i class="fa-regular fa-copy text-[10px] opacity-60"></i>
                             </button>
 
-                            <div class="bg-purple-950/70 text-purple-200 px-3.5 py-1.5 rounded-xl text-xs md:text-sm font-medium border border-purple-500/40 flex items-center gap-2">
+                            <div class="bg-purple-950/70 text-purple-200 px-3 py-1.5 rounded-xl text-xs font-medium border border-purple-500/40 flex items-center gap-1.5">
                                 <i class="fa-solid fa-location-dot text-emerald-400"></i> {{ profile.location }}
                             </div>
                         </div>
@@ -208,13 +223,13 @@
                 </div>
             </header>
 
-            <!-- Interactive Alice Phantom Chibi Companion Section -->
-            <section class="bg-gradient-to-r from-purple-900/40 via-phantom-card to-indigo-900/40 rounded-3xl p-6 border-3 border-phantom-border shadow-phantom-card relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6">
+            <!-- Interactive Alice Companion Section -->
+            <section class="bg-gradient-to-r from-purple-900/40 via-phantom-card to-indigo-900/40 rounded-2xl sm:rounded-3xl p-4 sm:p-6 border-2 sm:border-3 border-phantom-border shadow-phantom-card relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-6">
                 
                 <div class="relative shrink-0 flex items-center justify-center">
-                    <div class="absolute w-36 h-36 bg-purple-600/30 rounded-full blur-2xl"></div>
+                    <div class="absolute w-28 h-28 sm:w-36 sm:h-36 bg-purple-600/30 rounded-full blur-2xl"></div>
                     
-                    <div class="w-32 h-36 md:w-40 md:h-44 relative alice-companion cursor-pointer" @click="triggerAliceQuote">
+                    <div class="w-28 h-32 sm:w-36 sm:h-40 relative alice-companion cursor-pointer" @click="triggerAliceQuote">
                         <img src="Alice_animation.gif" 
                              @error="handleImageError($event, 'Alice_animation.webp')" 
                              alt="Alice Phantom Chibi" 
@@ -222,140 +237,133 @@
                     </div>
                 </div>
 
-                <div class="flex-1 bg-phantom-dark/80 rounded-2xl p-5 border-2 border-purple-500/30 relative text-center md:text-left shadow-inner">
+                <div class="flex-1 w-full bg-phantom-dark/80 rounded-xl sm:rounded-2xl p-4 sm:p-5 border-2 border-purple-500/30 relative text-center md:text-left shadow-inner">
                     <div class="flex items-center justify-between mb-2">
-                        <span class="text-xs uppercase tracking-widest text-phantom-lavender font-bold flex items-center gap-1.5">
+                        <span class="text-[11px] sm:text-xs uppercase tracking-widest text-phantom-lavender font-bold flex items-center gap-1.5">
                             <i class="fa-solid fa-cat text-pink-400"></i> Companion: Alice 
                         </span>
-                        <span class="text-[10px] bg-purple-900/80 text-purple-300 px-2.5 py-0.5 rounded-full border border-purple-700">
-                            Tap Alice to talk!
+                        <span class="text-[10px] bg-purple-900/80 text-purple-300 px-2 py-0.5 rounded-full border border-purple-700">
+                            Tap Alice!
                         </span>
                     </div>
 
-                    <p class="text-base text-purple-100 font-quicksand font-bold italic transition-all duration-300">
+                    <p class="text-sm sm:text-base text-purple-100 font-quicksand font-bold italic transition-all duration-300 leading-snug">
                         "{{ currentAliceDialogue }}"
                     </p>
 
                     <div class="mt-3 flex flex-wrap gap-2 justify-center md:justify-start">
-                        <button @click="triggerAliceQuote" class="bg-purple-800/60 hover:bg-purple-700 text-purple-200 text-xs px-3 py-1.5 rounded-lg border border-purple-500/40 transition">
+                        <button @click="triggerAliceQuote" class="bg-purple-800/60 hover:bg-purple-700 text-purple-200 text-xs px-3 py-1.5 rounded-lg border border-purple-500/40 transition active:scale-95">
                             🔮 Cast Spell
                         </button>
-                        <button @click="openGithubModal" class="bg-pink-900/40 hover:bg-pink-800/60 text-pink-200 text-xs px-3 py-1.5 rounded-lg border border-pink-500/40 transition flex items-center gap-1.5">
+                        <button @click="openGithubModal" class="bg-pink-900/40 hover:bg-pink-800/60 text-pink-200 text-xs px-3 py-1.5 rounded-lg border border-pink-500/40 transition flex items-center gap-1.5 active:scale-95">
                             <i class="fa-brands fa-github"></i> Summon GitHub
                         </button>
                     </div>
                 </div>
             </section>
 
-            <!-- Streamlined Skills Section with Good Luck Mascot Banner -->
-            <section class="bg-phantom-card/90 backdrop-blur-md rounded-3xl p-6 md:p-8 border-3 border-phantom-border shadow-phantom-card relative overflow-hidden">
-                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
+            <!-- Streamlined Skills Section -->
+            <section class="bg-phantom-card/90 backdrop-blur-md rounded-2xl sm:rounded-3xl p-4 sm:p-8 border-2 sm:border-3 border-phantom-border shadow-phantom-card relative overflow-hidden">
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 mb-5">
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-2xl bg-purple-900/80 border-2 border-purple-500 flex items-center justify-center text-phantom-lavender text-xl">
+                        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-purple-900/80 border-2 border-purple-500 flex items-center justify-center text-phantom-lavender text-lg sm:text-xl">
                             <i class="fa-solid fa-gem"></i>
                         </div>
                         <div>
-                            <h2 class="text-2xl font-bold text-white">Skill Abilities</h2>
-                            <p class="text-xs text-purple-300/80 font-quicksand">Essential powers equipped for web development</p>
+                            <h2 class="text-xl sm:text-2xl font-bold text-white">Skill Abilities</h2>
+                            <p class="text-[11px] sm:text-xs text-purple-300/80 font-quicksand">Essential powers equipped for web development</p>
                         </div>
                     </div>
 
-                    <!-- Embedded Mobile/Desktop Mascot Badge -->
-                    <div class="flex items-center gap-2 bg-emerald-950/60 border border-emerald-500/40 rounded-2xl p-1.5 pr-3 cursor-pointer shadow hover:bg-emerald-900/60 transition" @click="showToast('Luck increased! 🍀')">
-                        <img src="goodluck.webp" alt="Good Luck Mascot" class="w-8 h-8 rounded-xl object-cover">
-                        <span class="text-xs font-bold text-emerald-300">More Informations!</span>
+                    <div class="flex items-center gap-2 bg-emerald-950/60 border border-emerald-500/40 rounded-xl sm:rounded-2xl p-1.5 pr-3 cursor-pointer shadow hover:bg-emerald-900/60 transition active:scale-95 text-xs font-bold text-emerald-300" @click="showToast('Luck increased! 🍀')">
+                        <img src="goodluck.webp" alt="Good Luck Mascot" class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl object-cover">
+                        <span>More Informations!</span>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-4">
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5 sm:gap-4">
                     <div v-for="skill in skills" :key="skill.name" 
-                         class="bg-phantom-dark/70 hover:bg-purple-950/90 border-2 rounded-2xl p-4 transition transform hover:-translate-y-1 shadow-sm flex flex-col items-center text-center gap-2"
+                         class="bg-phantom-dark/70 hover:bg-purple-950/90 border-2 rounded-xl sm:rounded-2xl p-3 sm:p-4 transition transform hover:-translate-y-1 shadow-sm flex flex-col items-center text-center gap-1.5 sm:gap-2"
                          :class="skill.borderColor">
-                        <div class="w-11 h-11 rounded-xl flex items-center justify-center text-2xl shadow border"
+                        <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-xl flex items-center justify-center text-xl sm:text-2xl shadow border"
                              :class="[skill.bgColor, skill.textColor, skill.iconBorder]">
                             <i :class="skill.icon"></i>
                         </div>
-                        <span class="font-bold text-white text-sm">{{ skill.name }}</span>
-                        <span class="text-[11px] text-purple-300 font-quicksand">{{ skill.role }}</span>
+                        <span class="font-bold text-white text-xs sm:text-sm truncate w-full">{{ skill.name }}</span>
+                        <span class="text-[10px] sm:text-[11px] text-purple-300 font-quicksand line-clamp-1">{{ skill.role }}</span>
                     </div>
                 </div>
             </section>
 
             <!-- OFFICIAL CERTIFICATES SECTION -->
-            <section class="bg-phantom-card/90 backdrop-blur-md rounded-3xl p-6 md:p-8 border-3 border-phantom-border shadow-phantom-card relative overflow-hidden">
-                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
+            <section class="bg-phantom-card/90 backdrop-blur-md rounded-2xl sm:rounded-3xl p-4 sm:p-8 border-2 sm:border-3 border-phantom-border shadow-phantom-card relative overflow-hidden">
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 mb-5">
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-purple-600 to-pink-500 flex items-center justify-center text-white text-xl shadow-md">
+                        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-gradient-to-tr from-purple-600 to-pink-500 flex items-center justify-center text-white text-lg sm:text-xl shadow-md">
                             <i class="fa-solid fa-certificate"></i>
                         </div>
                         <div>
-                            <h2 class="text-2xl font-bold text-white">Certificates & Credentials</h2>
-                            <p class="text-xs text-purple-300/80 font-quicksand">Official training & summit achievements</p>
+                            <h2 class="text-xl sm:text-2xl font-bold text-white">Certificates & Credentials</h2>
+                            <p class="text-[11px] sm:text-xs text-purple-300/80 font-quicksand">Official training & summit achievements</p>
                         </div>
                     </div>
 
-                    <div class="flex items-center gap-3">
-                        <div class="w-8 h-8 rounded-full overflow-hidden border border-purple-400/50 cursor-pointer transition transform hover:scale-110" @click="showToast('Alice Pose Sticker! ✨')">
-                            <img src="alice_pose.webp" alt="Alice Pose Badge" class="w-full h-full object-cover">
-                        </div>
+                    <div class="flex items-center gap-2 sm:gap-3 self-end sm:self-auto">
                         <span class="text-xs bg-purple-900/60 text-phantom-lavender border border-purple-500/40 px-3 py-1 rounded-full font-bold">
-                            {{ certificates.length }} Official Credentials
+                            {{ certificates.length }} Credentials
                         </span>
                     </div>
                 </div>
 
                 <!-- Certificates Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4">
                     <div v-for="(cert, index) in certificates" :key="index"
                          @click="openCertModal(index)"
-                         class="bg-phantom-dark/80 hover:bg-purple-950/70 border-2 border-purple-500/30 hover:border-phantom-glow rounded-2xl p-4 transition duration-300 flex flex-col justify-between group cursor-pointer shadow-md">
+                         class="bg-phantom-dark/80 hover:bg-purple-950/70 border-2 border-purple-500/30 hover:border-phantom-glow rounded-xl sm:rounded-2xl p-3.5 sm:p-4 transition duration-300 flex flex-col justify-between group cursor-pointer shadow-md active:scale-98">
                         <div>
-                            <div class="flex items-start justify-between gap-3 mb-2">
-                                <span class="text-[10px] font-bold px-2.5 py-0.5 rounded-full border" :class="cert.badgeColor">
+                            <div class="flex items-start justify-between gap-2 mb-2">
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full border" :class="cert.badgeColor">
                                     {{ cert.category }}
                                 </span>
-                                <span class="text-xs text-purple-300/70 font-quicksand font-semibold">{{ cert.date }}</span>
+                                <span class="text-[11px] text-purple-300/70 font-quicksand font-semibold">{{ cert.date }}</span>
                             </div>
-                            <h3 class="font-bold text-white text-sm group-hover:text-phantom-lavender transition flex items-center justify-between">
+                            <h3 class="font-bold text-white text-xs sm:text-sm group-hover:text-phantom-lavender transition flex items-center justify-between">
                                 {{ cert.title }}
-                                <i class="fa-solid fa-arrow-up-right-from-square text-xs opacity-0 group-hover:opacity-100 transition text-pink-400"></i>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-[10px] sm:text-xs opacity-70 sm:opacity-0 group-hover:opacity-100 transition text-pink-400 ml-1"></i>
                             </h3>
-                            <p class="text-xs text-purple-200/80 font-quicksand mt-1">
+                            <p class="text-[11px] sm:text-xs text-purple-200/80 font-quicksand mt-1">
                                 {{ cert.issuer }}
                             </p>
-                            <p class="text-[11px] text-purple-300/60 font-quicksand italic mt-1 line-clamp-2">
-                                {{ cert.desc }}
-                            </p>
                         </div>
-                        <div class="mt-4 pt-3 border-t border-purple-900/60 flex items-center justify-between text-xs">
-                            <span class="text-emerald-400 flex items-center gap-1 font-semibold text-[11px]">
+                        <div class="mt-3 pt-2.5 border-t border-purple-900/60 flex items-center justify-between text-xs">
+                            <span class="text-emerald-400 flex items-center gap-1 font-semibold text-[10px] sm:text-[11px]">
                                 <i class="fa-solid fa-circle-check"></i> {{ cert.status }}
                             </span>
-                            <span class="text-phantom-lavender group-hover:underline font-bold text-[11px]">
-                                View Magic Spell →
+                            <span class="text-phantom-lavender group-hover:underline font-bold text-[10px] sm:text-[11px]">
+                                Inspect Card →
                             </span>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Footer & Direct Action Links -->
-            <footer class="bg-phantom-card/90 backdrop-blur-md rounded-3xl p-6 md:p-8 border-3 border-phantom-border shadow-phantom-card flex flex-col md:flex-row items-center justify-between gap-6">
+            <!-- Footer Action Links -->
+            <footer class="bg-phantom-card/90 backdrop-blur-md rounded-2xl sm:rounded-3xl p-5 sm:p-8 border-2 sm:border-3 border-phantom-border shadow-phantom-card flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-6">
                 <div class="text-center md:text-left">
-                    <div class="flex items-center justify-center md:justify-start gap-2 text-phantom-lavender mb-1 font-bold">
+                    <div class="flex items-center justify-center md:justify-start gap-2 text-phantom-lavender mb-1 font-bold text-sm sm:text-base">
                         <i class="fa-solid fa-moon text-purple-400"></i> {{ profile.name }}
                     </div>
                     <p class="text-xs text-purple-300/80 font-quicksand">Ready for web quests, collaborations, or custom projects!</p>
                 </div>
 
-                <div class="flex flex-wrap justify-center gap-3 w-full md:w-auto">
+                <div class="flex flex-col sm:flex-row justify-center gap-2.5 w-full md:w-auto">
                     <a :href="profile.github" target="_blank" rel="noopener noreferrer" 
-                       class="bg-purple-950 hover:bg-purple-900 text-purple-200 px-5 py-3 rounded-2xl font-bold text-sm shadow transition transform hover:-translate-y-1 flex items-center gap-2 border-2 border-purple-600">
-                        <i class="fa-brands fa-github text-lg text-purple-300"></i> GitHub Profile
+                       class="bg-purple-950 hover:bg-purple-900 text-purple-200 px-4 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl font-bold text-xs sm:text-sm shadow transition flex items-center justify-center gap-2 border-2 border-purple-600 active:scale-95">
+                        <i class="fa-brands fa-github text-base sm:text-lg text-purple-300"></i> GitHub Profile
                     </a>
 
                     <button @click="downloadCV" 
-                            class="bg-gradient-to-r from-purple-600 via-pink-500 to-purple-500 hover:from-purple-500 hover:to-pink-600 text-white px-6 py-3 rounded-2xl font-bold text-sm shadow-phantom-glow transition transform hover:-translate-y-1 flex items-center gap-2 border-2 border-purple-300">
+                            class="bg-gradient-to-r from-purple-600 via-pink-500 to-purple-500 hover:from-purple-500 hover:to-pink-600 text-white px-5 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl font-bold text-xs sm:text-sm shadow-phantom-glow transition flex items-center justify-center gap-2 border-2 border-purple-300 active:scale-95">
                         <i class="fa-solid fa-file-arrow-down"></i> Download CV (PDF)
                     </button>
                 </div>
@@ -365,48 +373,48 @@
 
         <!-- CERTIFICATE PREVIEW MODAL -->
         <Transition name="fade">
-            <div v-if="activeCertModal !== null" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-phantom-dark/85 backdrop-blur-md">
-                <div class="bg-phantom-card border-3 border-phantom-glow rounded-3xl max-w-xl w-full p-6 relative shadow-phantom-glow overflow-hidden">
-                    <button @click="closeCertModal" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-purple-950 text-purple-300 border border-purple-700 hover:bg-purple-800 hover:text-white flex items-center justify-center transition">
-                        <i class="fa-solid fa-xmark text-lg"></i>
+            <div v-if="activeCertModal !== null" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-phantom-dark/85 backdrop-blur-md overflow-y-auto">
+                <div class="bg-phantom-card border-2 sm:border-3 border-phantom-glow rounded-2xl sm:rounded-3xl max-w-xl w-full p-4 sm:p-6 relative shadow-phantom-glow max-h-[90vh] overflow-y-auto my-auto">
+                    <button @click="closeCertModal" class="absolute top-3 right-3 sm:top-4 sm:right-4 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-purple-950 text-purple-300 border border-purple-700 hover:bg-purple-800 hover:text-white flex items-center justify-center transition">
+                        <i class="fa-solid fa-xmark text-base sm:text-lg"></i>
                     </button>
 
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-10 h-10 rounded-2xl bg-purple-900 border border-purple-500 flex items-center justify-center text-pink-400 text-xl">
+                    <div class="flex items-center gap-3 mb-3 pr-8">
+                        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-purple-900 border border-purple-500 flex items-center justify-center text-pink-400 text-lg shrink-0">
                             <i class="fa-solid fa-scroll"></i>
                         </div>
                         <div>
-                            <span class="text-xs uppercase text-phantom-lavender font-bold tracking-widest">Trickcal Verified Spell</span>
-                            <h3 class="text-lg font-bold text-white">{{ selectedCert.title }}</h3>
+                            <span class="text-[10px] uppercase text-phantom-lavender font-bold tracking-widest">Trickcal Verified Spell</span>
+                            <h3 class="text-base sm:text-lg font-bold text-white leading-tight">{{ selectedCert.title }}</h3>
                         </div>
                     </div>
 
-                    <div class="bg-gradient-to-br from-purple-950 via-phantom-dark to-indigo-950 border-2 border-purple-500/40 rounded-2xl p-4 relative overflow-hidden my-3 shadow-inner text-center">
-                        <div v-if="selectedCert.imgSrc" class="mb-3 rounded-xl overflow-hidden border border-purple-500/30">
-                            <img :src="selectedCert.imgSrc" alt="Certificate Image" class="w-full max-h-56 object-contain bg-black/40">
+                    <div class="bg-gradient-to-br from-purple-950 via-phantom-dark to-indigo-950 border-2 border-purple-500/40 rounded-xl sm:rounded-2xl p-3 sm:p-4 relative overflow-hidden my-3 shadow-inner text-center">
+                        <div v-if="selectedCert.imgSrc" class="mb-3 rounded-lg sm:rounded-xl overflow-hidden border border-purple-500/30 max-h-48 sm:max-h-56">
+                            <img :src="selectedCert.imgSrc" alt="Certificate Image" class="w-full h-full object-contain bg-black/40">
                         </div>
 
                         <div class="flex items-center justify-center gap-2 text-pink-400 mb-1">
-                            <i class="fa-solid fa-ribbon text-xl"></i>
-                            <i class="fa-solid fa-wand-magic-sparkles text-lg"></i>
+                            <i class="fa-solid fa-ribbon text-lg"></i>
+                            <i class="fa-solid fa-wand-magic-sparkles text-base"></i>
                         </div>
-                        <h4 class="text-xs uppercase tracking-widest text-purple-300 font-bold">{{ selectedCert.type }}</h4>
-                        <p class="text-base font-bold text-phantom-lavender my-1">Presented to {{ profile.name }}</p>
+                        <h4 class="text-[11px] uppercase tracking-widest text-purple-300 font-bold">{{ selectedCert.type }}</h4>
+                        <p class="text-sm sm:text-base font-bold text-phantom-lavender my-1">Presented to {{ profile.name }}</p>
                         <p class="text-xs text-purple-200/80 font-quicksand max-w-sm mx-auto leading-relaxed">
                             {{ selectedCert.desc }}
                         </p>
 
-                        <div class="mt-4 pt-3 border-t border-purple-800/60 flex flex-wrap justify-between items-center text-[11px] text-purple-300">
+                        <div class="mt-3 pt-3 border-t border-purple-800/60 flex flex-col sm:flex-row justify-between items-center gap-1 text-[11px] text-purple-300">
                             <span><i class="fa-solid fa-building-columns text-purple-400"></i> {{ selectedCert.issuer }}</span>
                             <span><i class="fa-solid fa-calendar-check text-emerald-400"></i> {{ selectedCert.date }}</span>
                         </div>
                     </div>
 
-                    <div class="flex items-center justify-end gap-3 mt-4">
+                    <div class="flex items-center justify-end gap-2 sm:gap-3 mt-3">
                         <button @click="closeCertModal" class="px-4 py-2 rounded-xl text-xs font-bold text-purple-300 hover:text-white bg-purple-950/60 border border-purple-800 transition">
                             Close
                         </button>
-                        <button @click="copyToClipboard(selectedCert.title, 'Certificate name copied!')" class="px-5 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-500 hover:to-pink-600 transition shadow flex items-center gap-2">
+                        <button @click="copyToClipboard(selectedCert.title, 'Certificate name copied!')" class="px-4 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-500 hover:to-pink-600 transition shadow flex items-center gap-1.5">
                             <i class="fa-solid fa-copy"></i> Copy Title
                         </button>
                     </div>
@@ -417,24 +425,24 @@
         <!-- SUMMON GITHUB MODAL -->
         <Transition name="fade">
             <div v-if="showGithubModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-phantom-dark/85 backdrop-blur-md">
-                <div class="bg-phantom-card border-3 border-phantom-glow rounded-3xl max-w-md w-full p-6 relative text-center shadow-phantom-glow">
-                    <button @click="closeGithubModal" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-purple-950 text-purple-300 border border-purple-700 hover:bg-purple-800 hover:text-white flex items-center justify-center transition">
-                        <i class="fa-solid fa-xmark text-lg"></i>
+                <div class="bg-phantom-card border-2 sm:border-3 border-phantom-glow rounded-2xl sm:rounded-3xl max-w-md w-full p-5 sm:p-6 relative text-center shadow-phantom-glow">
+                    <button @click="closeGithubModal" class="absolute top-3 right-3 sm:top-4 sm:right-4 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-purple-950 text-purple-300 border border-purple-700 hover:bg-purple-800 hover:text-white flex items-center justify-center transition">
+                        <i class="fa-solid fa-xmark text-base sm:text-lg"></i>
                     </button>
 
-                    <h3 class="text-xl font-bold text-white mb-3">Summoning GitHub Realm! 🔮</h3>
+                    <h3 class="text-lg sm:text-xl font-bold text-white mb-2">Summoning GitHub Realm! 🔮</h3>
                     
-                    <div class="my-4 rounded-2xl overflow-hidden border-2 border-purple-500/40 bg-black/40 p-2">
-                        <img :src="summonGifSrc" alt="Trickcal Summon Animation" class="w-full h-48 object-contain mx-auto">
+                    <div class="my-3 rounded-xl sm:rounded-2xl overflow-hidden border-2 border-purple-500/40 bg-black/40 p-2 max-h-48">
+                        <img :src="summonGifSrc" alt="Trickcal Summon Animation" class="w-full h-36 sm:h-44 object-contain mx-auto">
                     </div>
 
-                    <p class="text-xs text-purple-200/80 font-quicksand mb-5">
+                    <p class="text-xs text-purple-200/80 font-quicksand mb-4">
                         Opening Mark's GitHub repository portal...
                     </p>
 
                     <div class="flex items-center justify-center gap-3">
                         <a :href="profile.github" target="_blank" rel="noopener noreferrer" 
-                           class="bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-500 hover:to-pink-600 text-white px-6 py-2.5 rounded-xl font-bold text-xs shadow transition">
+                           class="bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-500 hover:to-pink-600 text-white px-5 py-2.5 rounded-xl font-bold text-xs shadow transition">
                             <i class="fa-brands fa-github mr-1.5"></i> Visit GitHub Profile
                         </a>
                     </div>
@@ -443,7 +451,7 @@
         </Transition>
 
         <!-- Footer Copyright -->
-        <footer class="text-center py-6 text-xs text-purple-300/60 font-quicksand">
+        <footer class="text-center py-5 text-[11px] sm:text-xs text-purple-300/60 font-quicksand">
             Phantom Chibi Theme inspired by Trickcal Chibi Go • {{ profile.name }} © 2026
         </footer>
     </div>
