@@ -4,15 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mark Johnson Gerardo | Portfolio</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Vue 3 CDN -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <!-- Google Fonts: Fredoka & Quicksand -->
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- jsPDF for Direct PDF Generation -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
     <script>
@@ -25,13 +20,13 @@
                     },
                     colors: {
                         phantom: {
-                            bg: '#18122B',       /* Deep Night Sky */
-                            card: '#251D3A',     /* Dark Violet Card */
-                            border: '#392B58',   /* Glowing Border */
-                            lavender: '#D8B4FE', /* Soft Purple Highlights */
-                            glow: '#A855F7',     /* Neon Purple Glow */
-                            pink: '#F472B6',     /* Trickcal Pink */
-                            mint: '#A7F3D0',     /* Phantom Mint Accent */
+                            bg: '#18122B',
+                            card: '#251D3A',
+                            border: '#392B58',
+                            lavender: '#D8B4FE',
+                            glow: '#A855F7',
+                            pink: '#F472B6',
+                            mint: '#A7F3D0',
                             dark: '#0F0A1C',
                         }
                     },
@@ -56,7 +51,6 @@
             background-position: 0 0, 18px 18px;
         }
 
-        /* Animated Floating Effects */
         @keyframes float-slow {
             0%, 100% { transform: translateY(0px) rotate(0deg); }
             50% { transform: translateY(-12px) rotate(3deg); }
@@ -79,7 +73,6 @@
         .phantom-ring { animation: pulse-phantom 3.5s infinite; }
         .alice-companion { animation: ghost-glide 3s ease-in-out infinite; }
 
-        /* Peel/Flip Avatar Animation Class */
         .avatar-peel {
             transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1), filter 0.4s ease;
             transform-style: preserve-3d;
@@ -89,13 +82,11 @@
             filter: drop-shadow(0 0 15px rgba(216, 180, 254, 0.8));
         }
 
-        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #18122B; }
         ::-webkit-scrollbar-thumb { background: #392B58; border-radius: 9999px; border: 2px solid #18122B; }
         ::-webkit-scrollbar-thumb:hover { background: #A855F7; }
 
-        /* Vue Transition Animations */
         .fade-enter-active, .fade-leave-active {
             transition: opacity 0.3s ease, transform 0.3s ease;
         }
@@ -108,14 +99,12 @@
 <body class="min-h-screen flex flex-col justify-between selection:bg-purple-500 selection:text-white relative overflow-x-hidden">
 
     <div id="app">
-        <!-- Toast Notification Banner -->
         <div class="fixed top-4 right-4 left-4 sm:left-auto sm:right-5 sm:max-w-md z-50 transform transition-all duration-300 bg-phantom-card text-phantom-lavender px-4 py-3 rounded-2xl shadow-phantom-glow flex items-center justify-center sm:justify-start gap-3 border-2 border-phantom-glow font-medium text-sm sm:text-base pointer-events-none"
              :class="toast.visible ? 'translate-y-0 opacity-100' : '-translate-y-10 opacity-0'">
             <i class="fa-solid fa-ghost text-purple-400 animate-bounce"></i>
             <span class="text-center sm:text-left">{{ toast.message }}</span>
         </div>
 
-        <!-- Floating Desktop Stickers (XL Screens) -->
         <div class="hidden xl:block fixed top-24 left-6 w-28 h-28 z-20 animate-float pointer-events-auto cursor-pointer group" @click="showToast('Alice Pose activated! ✨')">
             <div class="w-full h-full rounded-2xl overflow-hidden border-2 border-purple-400/50 shadow-phantom-glow bg-phantom-card/60 p-1 backdrop-blur-sm transition transform group-hover:scale-110">
                 <img src="alice_pose.webp" alt="Alice Pose" class="w-full h-full object-cover rounded-xl">
@@ -134,10 +123,8 @@
             </div>
         </div>
 
-        <!-- Main Container -->
         <main class="max-w-4xl mx-auto px-3 sm:px-6 py-4 sm:py-10 w-full flex flex-col gap-6 relative z-10">
 
-            <!-- Navigation Bar -->
             <nav class="bg-phantom-card/80 backdrop-blur-md border-2 border-phantom-border rounded-2xl sm:rounded-full px-4 sm:px-6 py-3 flex items-center justify-between shadow-phantom-card">
                 <div class="flex items-center gap-2.5 sm:gap-3">
                     <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-gradient-to-tr from-purple-600 to-pink-500 flex items-center justify-center text-white text-xs sm:text-sm shadow">
@@ -147,7 +134,6 @@
                 </div>
             </nav>
 
-            <!-- MOBILE STICKER BAR -->
             <div class="flex xl:hidden justify-center items-center gap-3 bg-phantom-card/70 border border-phantom-border p-2.5 rounded-2xl backdrop-blur-md shadow-sm">
                 <div class="flex items-center gap-1.5 text-xs text-purple-300 font-bold mr-1">
                     <i class="fa-solid fa-sparkles text-pink-400"></i> Chibi Badges:
@@ -163,13 +149,11 @@
                 </div>
             </div>
 
-            <!-- Hero / Bio Section -->
             <header class="bg-phantom-card/90 backdrop-blur-md rounded-2xl sm:rounded-3xl p-5 sm:p-10 border-2 sm:border-3 border-phantom-border shadow-phantom-card relative overflow-hidden transition-all duration-300">
                 <div class="absolute -top-16 -right-16 w-36 h-36 sm:w-48 sm:h-48 bg-phantom-glow/20 rounded-full blur-3xl pointer-events-none"></div>
                 <div class="absolute -bottom-16 -left-16 w-36 h-36 sm:w-48 sm:h-48 bg-pink-500/15 rounded-full blur-3xl pointer-events-none"></div>
 
                 <div class="relative z-10 flex flex-col md:flex-row items-center gap-5 sm:gap-8 text-center md:text-left">
-                    <!-- Profile Avatar with Peel/Flip Interaction -->
                     <div class="relative shrink-0">
                         <div @click="toggleAvatarFace" 
                              class="w-32 h-32 sm:w-40 sm:h-40 md:w-44 md:h-44 rounded-2xl sm:rounded-3xl bg-gradient-to-tr from-purple-600 via-pink-400 to-purple-400 p-1.5 phantom-ring transform transition hover:scale-105 duration-300 cursor-pointer group"
@@ -180,7 +164,6 @@
                                      alt="Mark Johnson Gerardo Avatar" 
                                      class="w-full h-full object-cover object-top transition duration-300 group-hover:scale-110">
                                 
-                                <!-- Hover Peel Hint Badge -->
                                 <div class="absolute inset-x-0 bottom-0 bg-black/60 backdrop-blur-sm text-[10px] text-purple-200 py-1 text-center opacity-0 group-hover:opacity-100 transition">
                                     {{ isFaceRevealed ? 'Click to hide face 🔄' : 'Click to peel face! 📸' }}
                                 </div>
@@ -191,7 +174,6 @@
                         </span>
                     </div>
 
-                    <!-- Bio Information -->
                     <div class="flex flex-col gap-2.5 sm:gap-3 flex-1 w-full">
                         <div class="flex flex-wrap items-center justify-center md:justify-start gap-1.5 sm:gap-2 pt-2 md:pt-0">
                             <span class="bg-purple-900/60 text-purple-200 px-3 py-0.5 rounded-full text-[11px] sm:text-xs font-semibold border border-purple-500/40 flex items-center gap-1.5">
@@ -210,7 +192,6 @@
                             Aspiring web developer based in <span class="text-phantom-lavender font-bold underline decoration-purple-500">{{ profile.location }}</span>. Crafting cute, high-performance web applications using <span class="text-emerald-400 font-bold">HTML</span>, <span class="text-orange-400 font-bold">CSS</span>, <span class="text-yellow-400 font-bold">JavaScript</span>, <span class="text-emerald-400 font-bold">Vue 3</span>, <span class="text-cyan-400 font-bold">Tailwind CSS</span>, and <span class="text-sky-300 font-bold">VS Code</span>. ✨
                         </p>
 
-                        <!-- Contact Pills -->
                         <div class="flex flex-wrap justify-center md:justify-start gap-2 pt-1 sm:pt-2">
                             <button @click="copyToClipboard(profile.email, 'Email copied!')" 
                                     class="bg-purple-950/70 hover:bg-purple-900 active:scale-95 text-purple-200 px-3 py-1.5 rounded-xl text-xs font-medium border border-purple-500/40 transition flex items-center gap-1.5 cursor-pointer shadow-sm">
@@ -232,7 +213,6 @@
                 </div>
             </header>
 
-            <!-- FEATURED PROJECTS SECTION -->
             <section class="bg-phantom-card/90 backdrop-blur-md rounded-2xl sm:rounded-3xl p-5 sm:p-8 border-2 sm:border-3 border-phantom-border shadow-phantom-card relative overflow-hidden">
                 <div class="flex items-center gap-3 mb-6">
                     <div class="w-10 h-10 rounded-2xl bg-purple-900/80 border-2 border-purple-500 flex items-center justify-center text-pink-400 text-xl shadow-md">
@@ -245,7 +225,6 @@
                 </div>
 
                 <div class="grid grid-cols-1 gap-6">
-                    <!-- Project 1: KyuTea Cafe -->
                     <div class="bg-phantom-dark/80 border-2 border-purple-500/40 rounded-2xl p-5 shadow-md flex flex-col justify-between">
                         <div>
                             <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
@@ -268,7 +247,6 @@
                             </div>
                         </div>
 
-                        <!-- Interactive Repo Invoker Card -->
                         <div class="border-t border-purple-900/80 pt-4">
                             <button @click="toggleKyuteaRepo" class="bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-500 hover:to-pink-600 text-white px-4 py-2.5 rounded-xl font-bold text-xs shadow flex items-center gap-2 transition active:scale-95 cursor-pointer">
                                 <i class="fa-solid fa-wand-magic-sparkles"></i> 
@@ -293,7 +271,6 @@
                         </div>
                     </div>
 
-                    <!-- Project 2: Boarding House Finder -->
                     <div class="bg-phantom-dark/80 border-2 border-purple-500/40 rounded-2xl p-5 shadow-md flex flex-col justify-between">
                         <div>
                             <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
@@ -318,7 +295,6 @@
                 </div>
             </section>
 
-            <!-- EDUCATION & ACADEMIC BACKGROUND SECTION -->
             <section class="bg-phantom-card/90 backdrop-blur-md rounded-2xl sm:rounded-3xl p-5 sm:p-8 border-2 sm:border-3 border-phantom-border shadow-phantom-card relative overflow-hidden">
                 <div class="flex items-center gap-3 mb-6">
                     <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-purple-600 to-pink-500 flex items-center justify-center text-white text-xl shadow-md">
@@ -331,7 +307,6 @@
                 </div>
 
                 <div class="space-y-4">
-                    <!-- School 1: University -->
                     <div class="bg-phantom-dark/80 border-2 border-purple-500/40 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row justify-between sm:items-center gap-3 shadow-sm">
                         <div class="flex items-start gap-3.5">
                             <div class="w-10 h-10 rounded-xl bg-purple-900/80 border border-purple-500 flex items-center justify-center text-purple-300 text-lg shrink-0 mt-0.5">
@@ -348,7 +323,6 @@
                         </span>
                     </div>
 
-                    <!-- School 2: High School -->
                     <div class="bg-phantom-dark/80 border-2 border-purple-500/30 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row justify-between sm:items-center gap-3 shadow-sm">
                         <div class="flex items-start gap-3.5">
                             <div class="w-10 h-10 rounded-xl bg-indigo-900/80 border border-indigo-500 flex items-center justify-center text-indigo-300 text-lg shrink-0 mt-0.5">
@@ -365,7 +339,6 @@
                         </span>
                     </div>
 
-                    <!-- School 3: Elementary -->
                     <div class="bg-phantom-dark/80 border-2 border-purple-500/30 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row justify-between sm:items-center gap-3 shadow-sm">
                         <div class="flex items-start gap-3.5">
                             <div class="w-10 h-10 rounded-xl bg-purple-950 border border-purple-700 flex items-center justify-center text-pink-400 text-lg shrink-0 mt-0.5">
@@ -384,7 +357,6 @@
                 </div>
             </section>
 
-            <!-- OFFICIAL CERTIFICATES SECTION -->
             <section class="bg-phantom-card/90 backdrop-blur-md rounded-2xl sm:rounded-3xl p-5 sm:p-8 border-2 sm:border-3 border-phantom-border shadow-phantom-card relative overflow-hidden">
                 <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 mb-5">
                     <div class="flex items-center gap-3">
@@ -404,7 +376,6 @@
                     </div>
                 </div>
 
-                <!-- Certificates Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                     <div v-for="(cert, index) in certificates" :key="index"
                          @click="openCertModal(index)"
@@ -439,7 +410,6 @@
                 </div>
             </section>
 
-            <!-- Interactive Alice Companion Section -->
             <section class="bg-gradient-to-r from-purple-900/40 via-phantom-card to-indigo-900/40 rounded-2xl sm:rounded-3xl p-4 sm:p-6 border-2 sm:border-3 border-phantom-border shadow-phantom-card relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-6">
                 
                 <div class="relative shrink-0 flex items-center justify-center">
@@ -468,7 +438,7 @@
                     </p>
 
                     <div class="mt-3 flex flex-wrap gap-2 justify-center md:justify-start">
-                        <button @click="triggerAliceQuote" class="bg-purple-800/60 hover:bg-purple-700 text-purple-200 text-xs px-3 py-1.5 rounded-lg border border-purple-500/40 transition active:scale-95 cursor-pointer">
+                        <button @click="castSpell" class="bg-purple-800/60 hover:bg-purple-700 text-purple-200 text-xs px-3 py-1.5 rounded-lg border border-purple-500/40 transition active:scale-95 cursor-pointer">
                             🔮 Cast Spell
                         </button>
                         <button @click="openGithubModal" class="bg-pink-900/40 hover:bg-pink-800/60 text-pink-200 text-xs px-3 py-1.5 rounded-lg border border-pink-500/40 transition flex items-center gap-1.5 active:scale-95 cursor-pointer">
@@ -478,7 +448,6 @@
                 </div>
             </section>
 
-            <!-- Footer Action Links -->
             <footer class="bg-phantom-card/90 backdrop-blur-md rounded-2xl sm:rounded-3xl p-5 sm:p-8 border-2 sm:border-3 border-phantom-border shadow-phantom-card flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-6">
                 <div class="text-center md:text-left">
                     <div class="flex items-center justify-center md:justify-start gap-2 text-phantom-lavender mb-1 font-bold text-sm sm:text-base">
@@ -497,7 +466,6 @@
 
         </main>
 
-        <!-- CERTIFICATE PREVIEW MODAL -->
         <Transition name="fade">
             <div v-if="activeCertModal !== null" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-phantom-dark/85 backdrop-blur-md overflow-y-auto">
                 <div class="bg-phantom-card border-2 sm:border-3 border-phantom-glow rounded-2xl sm:rounded-3xl max-w-xl w-full p-4 sm:p-6 relative shadow-phantom-glow max-h-[90vh] overflow-y-auto my-auto">
@@ -548,7 +516,6 @@
             </div>
         </Transition>
 
-        <!-- SUMMON GITHUB MODAL -->
         <Transition name="fade">
             <div v-if="showGithubModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-phantom-dark/85 backdrop-blur-md">
                 <div class="bg-phantom-card border-2 sm:border-3 border-phantom-glow rounded-2xl sm:rounded-3xl max-w-md w-full p-5 sm:p-6 relative text-center shadow-phantom-glow">
@@ -576,19 +543,16 @@
             </div>
         </Transition>
 
-        <!-- Footer Copyright -->
         <footer class="text-center py-5 text-[11px] sm:text-xs text-purple-300/60 font-quicksand">
             Phantom Chibi Theme inspired by Trickcal Chibi Go • {{ profile.name }} © 2026
         </footer>
     </div>
 
-    <!-- Vue 3 Application Script -->
     <script>
         const { createApp, ref, computed } = Vue;
 
         createApp({
             setup() {
-                // Profile State
                 const profile = ref({
                     name: 'Mark Johnson Gerardo',
                     location: 'Tuguegarao City',
@@ -598,7 +562,6 @@
                     avatar: 'image_20cfdf.webp'
                 });
 
-                // Avatar Peel/Reveal State & Image Fallbacks
                 const isFaceRevealed = ref(false);
                 const faceExtensions = ['mark_face.webp', 'mark_face.jpg', 'mark_face.png'];
                 const faceIndex = ref(0);
@@ -617,35 +580,36 @@
                     }
                 }
 
-                // KyuTea Repo Invoker State & Counter Audio
+                const normalSound = new Audio('speaki_auu.mp3');
+                const yapSound = new Audio('speaki_yap.mp3');
+                normalSound.volume = 0.7;
+                yapSound.volume = 0.7;
+
+                const spellClickCount = ref(0);
+
+                function castSpell() {
+                    spellClickCount.value++;
+                    if (spellClickCount.value === 3) {
+                        yapSound.currentTime = 0;
+                        yapSound.play().catch(err => console.log(err));
+                        spellClickCount.value = 0;
+                        showToast("🎉 3rd Click! speaki_yap.mp3!");
+                    } else {
+                        normalSound.currentTime = 0;
+                        normalSound.play().catch(err => console.log(err));
+                        showToast(`Spell cast! (${spellClickCount.value}/3) ✨`);
+                    }
+                }
+
                 const showKyuteaRepo = ref(false);
-                const invokeClickCount = ref(0);
 
                 function toggleKyuteaRepo() {
-                    invokeClickCount.value++;
-
-                    let soundFile = '';
-                    if (invokeClickCount.value === 3) {
-                        soundFile = 'speaki_yap.mp3';
-                        invokeClickCount.value = 0; // Reset counter after 3rd click
-                    } else {
-                        soundFile = 'speaki_auu.mp3';
-                    }
-
-                    // Play selected MP3 audio
-                    const sound = new Audio(soundFile);
-                    sound.volume = 0.7;
-                    sound.play().catch(error => {
-                        console.log("Audio playback prevented or file missing:", error);
-                    });
-
                     showKyuteaRepo.value = !showKyuteaRepo.value;
                     if (showKyuteaRepo.value) {
                         showToast("Invoked KyuTea Cafe Repository Card! 🔮✨");
                     }
                 }
 
-                // Toast State
                 const toast = ref({
                     visible: false,
                     message: ''
@@ -659,7 +623,6 @@
                     }, 2500);
                 }
 
-                // Clipboard Helper
                 function copyToClipboard(text, customMessage) {
                     if (navigator.clipboard && navigator.clipboard.writeText) {
                         navigator.clipboard.writeText(text).then(() => {
@@ -688,7 +651,6 @@
                     document.body.removeChild(textArea);
                 }
 
-                // Alice Companion State
                 const aliceQuotes = [
                     "\"Fuhu~ Mark built KyuTea Cafe with Django REST & Vue 3! Check out the repo card!\"",
                     "\"Did you know Mark is pursuing a Bachelor of Science in Computer Engineering at CSU Carig?\"",
@@ -705,7 +667,6 @@
                     showToast("Alice Played A Prank On You");
                 }
 
-                // Certificates Data
                 const certificates = ref([
                     {
                         title: "240 Hours On-the-Job Training",
@@ -753,7 +714,6 @@
                     }
                 ]);
 
-                // Certificate Modal Logic
                 const activeCertModal = ref(null);
                 const selectedCert = computed(() => activeCertModal.value !== null ? certificates.value[activeCertModal.value] : {});
 
@@ -766,7 +726,6 @@
                     activeCertModal.value = null;
                 }
 
-                // Summon GitHub Modal Logic
                 const showGithubModal = ref(false);
                 const summonGifSrc = ref('06.gif');
 
@@ -784,12 +743,10 @@
                     showGithubModal.value = false;
                 }
 
-                // Image Fallback Helper
                 function handleImageError(event, fallbackSrc) {
                     event.target.src = fallbackSrc;
                 }
 
-                // Direct jsPDF Download Logic
                 function downloadCV() {
                     showToast("Generating Mark's CV (PDF)... 📄✨");
                     
@@ -890,8 +847,8 @@
                     toggleAvatarFace,
                     onFaceImageError,
                     showKyuteaRepo,
-                    invokeClickCount,
                     toggleKyuteaRepo,
+                    castSpell,
                     toast,
                     showToast,
                     copyToClipboard,
