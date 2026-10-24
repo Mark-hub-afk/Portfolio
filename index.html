@@ -79,6 +79,16 @@
         .phantom-ring { animation: pulse-phantom 3.5s infinite; }
         .alice-companion { animation: ghost-glide 3s ease-in-out infinite; }
 
+        /* Peel/Flip Avatar Animation Class */
+        .avatar-peel {
+            transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1), filter 0.4s ease;
+            transform-style: preserve-3d;
+        }
+        .avatar-peel.peeled {
+            transform: rotateY(360deg) scale(1.05);
+            filter: drop-shadow(0 0 15px rgba(216, 180, 254, 0.8));
+        }
+
         /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #18122B; }
@@ -145,7 +155,7 @@
                 </div>
             </nav>
 
-            <!-- MOBILE STICKER BAR (Only visible on small/mobile screens) -->
+            <!-- MOBILE STICKER BAR -->
             <div class="flex xl:hidden justify-center items-center gap-3 bg-phantom-card/70 border border-phantom-border p-2.5 rounded-2xl backdrop-blur-md shadow-sm">
                 <div class="flex items-center gap-1.5 text-xs text-purple-300 font-bold mr-1">
                     <i class="fa-solid fa-sparkles text-pink-400"></i> Chibi Badges:
@@ -167,14 +177,21 @@
                 <div class="absolute -bottom-16 -left-16 w-36 h-36 sm:w-48 sm:h-48 bg-pink-500/15 rounded-full blur-3xl pointer-events-none"></div>
 
                 <div class="relative z-10 flex flex-col md:flex-row items-center gap-5 sm:gap-8 text-center md:text-left">
-                    <!-- Profile Avatar -->
+                    <!-- Profile Avatar with Peel/Flip Interaction -->
                     <div class="relative shrink-0">
-                        <div class="w-32 h-32 sm:w-40 sm:h-40 md:w-44 md:h-44 rounded-2xl sm:rounded-3xl bg-gradient-to-tr from-purple-600 via-pink-400 to-purple-400 p-1.5 phantom-ring transform transition hover:scale-105 duration-300">
-                            <div class="w-full h-full bg-phantom-dark rounded-[18px] sm:rounded-[22px] overflow-hidden relative group">
-                                <img :src="profile.avatar" 
+                        <div @click="toggleAvatarFace" 
+                             class="w-32 h-32 sm:w-40 sm:h-40 md:w-44 md:h-44 rounded-2xl sm:rounded-3xl bg-gradient-to-tr from-purple-600 via-pink-400 to-purple-400 p-1.5 phantom-ring transform transition hover:scale-105 duration-300 cursor-pointer group"
+                             title="Click to peel/reveal Mark's real face!">
+                            <div class="w-full h-full bg-phantom-dark rounded-[18px] sm:rounded-[22px] overflow-hidden relative avatar-peel" :class="{ 'peeled': isFaceRevealed }">
+                                <img :src="isFaceRevealed ? 'mark_face.webp' : profile.avatar" 
                                      @error="handleImageError($event, 'https://placehold.co/400x400/251D3A/D8B4FE?text=Mark+Gerardo')" 
                                      alt="Mark Johnson Gerardo Avatar" 
                                      class="w-full h-full object-cover object-top transition duration-300 group-hover:scale-110">
+                                
+                                <!-- Hover Peel Hint Badge -->
+                                <div class="absolute inset-x-0 bottom-0 bg-black/60 backdrop-blur-sm text-[10px] text-purple-200 py-1 text-center opacity-0 group-hover:opacity-100 transition">
+                                    {{ isFaceRevealed ? 'Click to hide face 🔄' : 'Click to peel face! 📸' }}
+                                </div>
                             </div>
                         </div>
                         <span class="absolute -bottom-2 right-1/2 md:right-1 transform translate-x-1/2 md:translate-x-0 bg-gradient-to-r from-purple-600 to-pink-500 text-white text-[11px] sm:text-xs px-3 py-0.5 sm:py-1 rounded-full font-bold shadow-md border-2 border-phantom-card whitespace-nowrap animate-bounce">
@@ -472,6 +489,14 @@
                     avatar: 'image_20cfdf.webp'
                 });
 
+                // Avatar Peel/Reveal State
+                const isFaceRevealed = ref(false);
+
+                function toggleAvatarFace() {
+                    isFaceRevealed.value = !isFaceRevealed.value;
+                    showToast(isFaceRevealed.value ? "Revealed Mark's real face! 📸✨" : "Switched back to avatar! 🔮");
+                }
+
                 // Toast State
                 const toast = ref({
                     visible: false,
@@ -707,6 +732,8 @@
 
                 return {
                     profile,
+                    isFaceRevealed,
+                    toggleAvatarFace,
                     toast,
                     showToast,
                     copyToClipboard,
